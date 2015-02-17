@@ -8,8 +8,8 @@ chris, mary = User.create([
 ])
 
 uplifting_lemma, chasing_bunnies = App.create([
-    {name: 'Uplifting Lemma', theme: 'blue', type: 'upliftinglemma'},
-    {name: 'Chasing Bunnies', theme: 'purple', type: 'blog'}
+    {name: 'Uplifting Lemma', type: 'Upliftinglemma'},
+    {name: 'Chasing Bunnies', type: 'Blog'}
 ])
 
 Role.create([

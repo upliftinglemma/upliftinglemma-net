@@ -28,6 +28,7 @@ gem 'bootstrap-sass'
 gem 'browserid-auth-rails'
 gem 'disqus_rails'
 gem 'font-awesome-rails'
+gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'paper_trail'
 

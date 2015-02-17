@@ -14,24 +14,26 @@
 ActiveRecord::Schema.define(version: 20150217194504) do
 
   create_table "apps", force: :cascade do |t|
-    t.string   "name"
-    t.string   "theme"
-    t.string   "type"
+    t.string   "name",       null: false
+    t.string   "type",       null: false
+    t.string   "slug",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "apps", ["slug"], name: "index_apps_on_slug", unique: true
+
   create_table "roles", force: :cascade do |t|
-    t.integer  "app_id"
-    t.integer  "user_id"
-    t.string   "role"
+    t.integer  "app_id",     null: false
+    t.integer  "user_id",    null: false
+    t.string   "role",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "name"
+    t.string   "email",      null: false
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

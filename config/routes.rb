@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'apps/show'
+
+  get 'apps/not_found'
+
   root 'main#index'
 
   post 'login' => 'sessions_controller#create'
