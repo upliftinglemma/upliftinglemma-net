@@ -1,0 +1,56 @@
+$primary-color: red !default;
+$background-color: red !default;
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: $background-color;
+}
+
+#container {
+    height: 100%;
+}
+
+#page {
+    position: relative;
+
+    height: auto !important;
+    height: 100%;
+    min-height: 95%;
+
+    padding: 10px;
+    margin: 5px 0;
+
+    background: white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.33);
+
+    #header {
+        background-color: $primary-color;
+
+        h1 {
+            color: white;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.33);
+        }
+    }
+
+    #content {
+        padding: 0 10px 30px 10px;
+    }
+
+    #footer {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        padding: 10px 20px;
+
+        font-size: small;
+        color: gray;
+    }
+}
+

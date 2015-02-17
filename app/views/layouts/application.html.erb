@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Uplifting Lemma</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= disqus_init %>
-  <%= setup_browserid %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+    <head>
+        <title><%= content_or_default_for :title, "Uplifting Lemma" %></title>
 
-<%= yield %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag params[:controller], 'data-turbolinks-track' => true %>
 
-</body>
+        <%= disqus_init %>
+        <%= setup_browserid %>
+        <%= csrf_meta_tags %>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="container" class="container">
+            <div id="page">
+                <div id="header" class="jumbotron">
+                    <h1><%= content_or_default_for :app_name, "Uplifting Lemma" %></h1>
+                </div>
+
+                <div id="content">
+                    <%= content_for?(:content) ? yield(:content) : yield %>
+                </div>
+
+                <div id="footer">
+                    Uplifting Lemma &copy; 2015 Chris Bouchard
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
