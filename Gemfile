@@ -29,6 +29,7 @@ gem 'browserid-auth-rails'
 gem 'disqus_rails'
 gem 'font-awesome-rails'
 gem 'gravatar_image_tag'
+gem 'paper_trail'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
