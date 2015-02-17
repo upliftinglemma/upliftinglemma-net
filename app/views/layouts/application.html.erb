@@ -4,8 +4,8 @@
         <title><%= content_or_default_for :title, "Uplifting Lemma" %></title>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= stylesheet_link_tag    params[:controller], 'data-turbolinks-track' => true %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag params[:controller], 'data-turbolinks-track' => true %>
 
         <%= disqus_init %>
         <%= setup_browserid %>
