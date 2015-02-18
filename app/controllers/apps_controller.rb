@@ -4,12 +4,13 @@ class AppsController < ApplicationController
     def show
     end
 
-    def not_found
-    end
-
     private
 
     def load_app
-        @app = App.friendly.find(request.subdomain)
+        begin
+            @app = App.friendly.find(request.subdomain)
+        rescue ActiveRecord::RecordNotFound
+            @app = App.default
+        end
     end
 end

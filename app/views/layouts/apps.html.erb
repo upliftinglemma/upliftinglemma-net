@@ -1,0 +1,12 @@
+<% content_for :app_title do %>
+    <%= link_to @app.name, app_url %>
+<% end %>
+
+<% if not @app.is_default? %>
+    <% content_for :subtitle do %>
+        Powered by <%= link_to "Uplifting Lemma", root_url %>
+    <% end %>
+<% end %>
+
+<%= render template: "layouts/application" %>
+

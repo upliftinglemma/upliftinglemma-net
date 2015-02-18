@@ -17,7 +17,10 @@
         <div id="container" class="container">
             <div id="page">
                 <div id="header" class="jumbotron">
-                    <h1><%= content_or_default_for :app_name, "Uplifting Lemma" %></h1>
+                    <h1><%= content_or_default_for :app_title, "Uplifting Lemma" %></h1>
+                    <% if content_for? :subtitle %>
+                        <h2><%= content_for :subtitle %></h2>
+                    <% end %>
                 </div>
 
                 <div id="content">

@@ -9,4 +9,16 @@ class App < ActiveRecord::Base
     has_many :users, through: :roles
 
     validates_presence_of :name, :type, :slug
+
+    def is_default?
+        slug == self.class.default_slug
+    end
+
+    def self.default_slug
+        'uplifting-lemma'
+    end
+
+    def self.default
+        App.friendly.find(default_slug)
+    end
 end

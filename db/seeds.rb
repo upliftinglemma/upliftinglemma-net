@@ -7,12 +7,12 @@ chris, mary = User.create([
     {email: 'mferro54@gmail.com', name: 'Mary Ferro'}
 ])
 
-uplifting_lemma, chasing_bunnies = App.create([
+uplifting_lemma, chasing_rabbits = App.create([
     {name: 'Uplifting Lemma', type: 'Upliftinglemma'},
-    {name: 'Chasing Bunnies', type: 'Blog'}
+    {name: 'Chasing Rabbits', type: 'Blog'}
 ])
 
 Role.create([
     {app: uplifting_lemma, user: chris, role: 'owner'},
-    {app: chasing_bunnies, user: mary, role: 'owner'}
+    {app: chasing_rabbits, user: mary, role: 'owner'}
 ])
