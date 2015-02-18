@@ -8,7 +8,7 @@
 
 <% if not @app.is_default? %>
     <% content_for :subtitle do %>
-        Powered by <%= link_to "Uplifting Lemma", root_url %>
+        <span class="powered-by">Powered by</span> <%= link_to "Uplifting Lemma", root_url %>
     <% end %>
 <% end %>
 

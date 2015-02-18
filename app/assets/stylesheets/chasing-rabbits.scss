@@ -2,8 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$primary-color: #353587;
-$background-color: #151536;
+$primary-color: hsl(115, 75%, 33%);
 
 @import "theme";
+
+#header {
+    background-image: image-url('grass-overlay.png');
+    background-size: 100% auto;
+}
 
