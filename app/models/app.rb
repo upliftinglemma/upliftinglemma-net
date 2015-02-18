@@ -6,7 +6,8 @@ class App < ActiveRecord::Base
     friendly_id :name, use: :slugged
 
     has_many :roles
-    has_many :users, through: :roles
+
+    belongs_to :user
 
     validates_presence_of :name, :type, :slug
 

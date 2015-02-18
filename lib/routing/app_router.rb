@@ -13,36 +13,43 @@ module Routing
         end
 
         def self.route_all
-            App.all.each do |app|
-                # Save the router and the block in variables so we can use them
-                # after our context gets changed.
-                router = get_router(app)
-                block = router.app_routes
+            begin
+                App.all.each do |app|
+                    # Save the router and the block in variables so we can use them
+                    # after our context gets changed.
+                    router = get_router(app)
+                    block = router.app_routes
 
-                Rails.application.routes.draw do
-                    if app.is_default?
-                        # If this is the default app, just let it do it's
-                        # thing.
-                        constraints subdomain: '' do
-                            instance_eval &block
-                        end
-                    else
-                        # If this is not the default app, we need to restrict
-                        # it to a subdomain and force it not to draw a root
-                        # path.
-                        constraints subdomain: app.slug do
-                            obj = RootRouteAdaptor.new self
-                            obj.instance_eval &block
+                    Rails.application.routes.draw do
+                        if app.is_default?
+                            # If this is the default app, just let it do it's
+                            # thing.
+                            constraints subdomain: '' do
+                                instance_eval &block
+                            end
+                        else
+                            # If this is not the default app, we need to restrict
+                            # it to a subdomain and force it not to draw a root
+                            # path.
+                            constraints subdomain: app.slug do
+                                obj = RootRouteAdaptor.new self
+                                obj.instance_eval &block
+                            end
                         end
                     end
                 end
-            end
 
-            # Redirect any other subdomains to the default app
-            Rails.application.routes.draw do
-                constraints subdomain: /.+/ do
-                    match ':any', to: redirect(subdomain: false, path: '/'), via: :all, any: /.*/
+                # Redirect any other subdomains to the default app
+                Rails.application.routes.draw do
+                    constraints subdomain: /.+/ do
+                        match ':any', to: redirect(subdomain: false, path: '/'), via: :all, any: /.*/
+                    end
                 end
+
+            rescue ActiveRecord::StatementInvalid
+                # Ignore. This gets raised if the apps table isn't there, but
+                # we can't create the apps table unless we can get past this
+                # method call.
             end
         end
 
