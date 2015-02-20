@@ -12,5 +12,14 @@
     <% end %>
 <% end %>
 
+<% content_for :content, yield %>
+
+<% content_for :footer do %>
+    <% if not @app.is_default? %>
+        <!-- TODO: Write copyright code. -->
+        <span class="powered-by">Powered by</span> <%= link_to "Uplifting Lemma", root_url %>
+    <% end %>
+<% end %>
+
 <%= render template: "layouts/application" %>
 

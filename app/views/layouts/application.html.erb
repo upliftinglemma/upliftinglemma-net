@@ -25,11 +25,11 @@
                 </div>
 
                 <div id="content">
-                    <%= content_for?(:content) ? yield(:content) : yield %>
+                    <%= content_for(:content) %>
                 </div>
 
                 <div id="footer">
-                    Uplifting Lemma &copy; 2015 Chris Bouchard
+                    <%= content_for(:footer) %>
                 </div>
             </div>
         </div>
