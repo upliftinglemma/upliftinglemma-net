@@ -1,15 +1,17 @@
 db:
-  image: postgres
+  image: postgres:9.3
+  volumes_from:
+    - upliftinglemma-net-db-data
   ports:
-    - "5432"
-
+    - 5432
 web:
   build: .
   command: bundle exec rackup -p 3000
   volumes:
-    - .:/upliftinglemma-net
+    - ".:/usr/src/app"
+  volumes_from:
+    - gems-2.1
   ports:
     - "3000:3000"
   links:
     - db
-

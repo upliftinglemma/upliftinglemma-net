@@ -1,9 +1,16 @@
-FROM ruby
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
-RUN mkdir /upliftinglemma-net
-WORKDIR /upliftinglemma-net
-ADD Gemfile /upliftinglemma-net/Gemfile
-ADD Gemfile.lock /upliftinglemma-net/Gemfile.lock
-RUN bundle install
-ADD . /upliftinglemma-net
+FROM ruby:2.1.5
 
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+ENV GEM_HOME /usr/local/bundle
+ENV PATH $GEM_HOME/bin:$PATH
+
+# Installing common RoR dependencies: Node.js and database clients
+# Remove the clients you don't use and modify to your needs.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 3000
+CMD ["rails", "server"]
