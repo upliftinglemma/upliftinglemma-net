@@ -24,7 +24,9 @@ custom_bootstrap(){
   # This is the last bootstrap step; it is run after the first `bundle install`.
   # Since this application has a db, you'll probably want to `rake db:setup`.
   print_info "Setting up the database (rake db:setup)"
+  fig up -d db
   fig run web bundle exec rake db:setup
+  fig kill db
   handle_error $? "setting up the database"
 }
 ## /CUSTOMIZE
