@@ -1,26 +1,19 @@
-nginx:
-  image: jwilder/nginx-proxy
-  volumes:
-    - "/var/run/docker.sock:/tmp/docker.sock"
-  ports:
-    - "80:80"
-
 db:
   image: postgres:9.3
   volumes_from:
     - upliftinglemma-net-db-data
-  ports:
-    - 5432
+  expose:
+    - "5432"
 
 web:
   build: .
-  command: bundle exec rackup -p 3000
+  command: bundle exec rails server -b 0.0.0.0 -p 3000
   volumes:
     - ".:/usr/src/app"
   volumes_from:
     - gems-2.1
-  # ports:
-  #   - "3000:3000"
+  ports:
+    - "3000:3000"
   links:
     - db
 

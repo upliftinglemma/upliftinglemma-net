@@ -7,8 +7,7 @@ ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
 
 # Let the nginx-proxy container know about our app
-ENV VIRTUAL_HOST *.upliftinglemma.dev
-ENV VIRTUAL_PORT 3000
+ENV VIRTUAL_HOST upliftinglemma.dev,*.upliftinglemma.dev
 
 # Installing common RoR dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -16,4 +15,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 3000
-CMD ["rails", "server"]
+CMD bundle exec rails server -b 0.0.0.0 -p 3000
+
