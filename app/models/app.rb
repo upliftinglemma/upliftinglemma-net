@@ -9,7 +9,7 @@ class App < ActiveRecord::Base
 
     belongs_to :user
 
-    validates_presence_of :name, :type, :slug
+    validates_presence_of :name, :engine, :slug
 
     def is_default?
         slug == self.class.default_slug

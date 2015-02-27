@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218215118) do
+ActiveRecord::Schema.define(version: 20150227042159) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "apps", force: :cascade do |t|
     t.string   "name",       null: false
-    t.string   "type",       null: false
+    t.string   "engine",     null: false
     t.string   "slug",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -23,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150218215118) do
     t.string   "license"
   end
 
-  add_index "apps", ["slug"], name: "index_apps_on_slug", unique: true
-  add_index "apps", ["user_id"], name: "index_apps_on_user_id"
+  add_index "apps", ["slug"], name: "index_apps_on_slug", unique: true, using: :btree
+  add_index "apps", ["user_id"], name: "index_apps_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.integer  "app_id",     null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150218215118) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
@@ -52,6 +55,6 @@ ActiveRecord::Schema.define(version: 20150218215118) do
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
