@@ -23,20 +23,24 @@
 
                     <% if not @app.is_default? %>
                         <span class="powered-by">Powered by</span>
-                        <%= link_to "Uplifting Lemma", root_url %>
+                        <%= link_to "Uplifting Lemma", uplifting_lemma_url %>
                     <% end %>
                     <%= content_for :header %>
                 </div>
 
                 <div id="content">
-                    <%= content_for :content %>
+                    <% if content_for? :content %>
+                        <%= content_for :content %>
+                    <% else %>
+                        <%= yield %>
+                    <% end %>
                 </div>
 
                 <div id="footer">
                     <% if not @app.is_default? %>
                         <!-- TODO: Write copyright code. -->
                         <span class="powered-by">Powered by</span>
-                        <%= link_to "Uplifting Lemma", root_url %>
+                        <%= link_to "Uplifting Lemma", uplifting_lemma_url %>
                     <% end %>
                     <%= content_for :footer %>
                 </div>
