@@ -1,4 +1,4 @@
 module UpliftingLemma
-  class ApplicationController < ActionController::Base
-  end
+    class ApplicationController < ::ApplicationController
+    end
 end
