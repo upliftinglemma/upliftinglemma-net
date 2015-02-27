@@ -9,7 +9,15 @@ class App < ActiveRecord::Base
 
     belongs_to :user
 
-    validates_presence_of :name, :engine, :slug
+    validates_presence_of :name, :engine_name, :slug
+
+    def engine
+        engine_name.constantize::Engine
+    end
+
+    def engine=(engine)
+        self.engine_name = engine.name.deconstantize
+    end
 
     def is_default?
         slug == self.class.default_slug
