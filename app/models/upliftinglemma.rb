@@ -1,2 +1,0 @@
-class Upliftinglemma < App
-end

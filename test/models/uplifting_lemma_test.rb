@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UpliftinglemmaTest < ActiveSupport::TestCase
+class UpliftingLemmaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

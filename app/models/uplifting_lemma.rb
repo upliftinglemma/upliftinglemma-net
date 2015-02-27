@@ -1,0 +1,2 @@
+class UpliftingLemma < App
+end
