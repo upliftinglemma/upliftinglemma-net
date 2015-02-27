@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     post 'login' => 'sessions#create'
     post 'logout' => 'sessions#destroy'
 
-end
+    mount UpliftingLemma, at: '/'
 
-Routing::AppRouter.route_all
+end
 
