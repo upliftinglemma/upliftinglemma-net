@@ -129,14 +129,20 @@ bootstrap(){
 }
 
 start(){
+  # If requested, start the nginx server.
+  local SERVICES="db web"
+  [ "$1" = "--nginx" ] && SERVICES="nginx $SERVICES"
+
   # Assume Docker host is localhost, override in the case boot2docker is detected
-  local URL=http://localhost:$PORT/
-  command -v boot2docker > /dev/null 2>&1 && URL=http://$(boot2docker ip 2> /dev/null):$PORT/
+  local URL=http://localhost/
+  command -v boot2docker > /dev/null 2>&1 && URL=http://$(boot2docker ip 2> /dev/null)/
+
+  [ "$PORT" != "80" ] && URL="$URL:$PORT"
 
   print_info "Open $URL on your browser."
   print_normal
 
-  fig up
+  fig up $SERVICES
 }
 
 bundle_exec(){
@@ -178,7 +184,7 @@ case "$1" in
   ;;
 
   "start")
-    start
+    start ${@:2}
   ;;
 
   "exec")
