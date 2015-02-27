@@ -1,3 +1,3 @@
 UpliftingLemma::Engine.routes.draw do
-    root 'home#show'
+    root to: 'home#show'
 end
