@@ -32,6 +32,9 @@ gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'paper_trail'
 
+# App Type Engines
+gem 'uplifting_lemma', path: 'engines/uplifting_lemma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
