@@ -1,3 +1,6 @@
+##
+# This class represents a user that can log in to the website.
+#
 # == Schema Information
 #
 # Table name: users

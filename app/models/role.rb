@@ -1,3 +1,6 @@
+##
+# This class represents a user's role in an app.
+#
 # == Schema Information
 #
 # Table name: roles

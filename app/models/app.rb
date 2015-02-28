@@ -1,3 +1,6 @@
+##
+# This class represents an app on the website.
+#
 # == Schema Information
 #
 # Table name: apps
@@ -25,21 +28,41 @@ class App < ActiveRecord::Base
 
     validates_presence_of :name, :engine_name, :slug
 
+
+    ##
+    # Look up the app's engine by the engine name (i.e., the namespace).
+
     def engine
         engine_name.constantize::Engine
     end
 
-    def engine=(engine)
+
+    ##
+    # Set the app's engine to +engine+.
+
+    def engine= engine
         self.engine_name = engine.name.deconstantize
     end
+
+
+    ##
+    # Decide if this app is the default app.
 
     def is_default?
         slug == self.class.default_slug
     end
 
+
+    ##
+    # The slug of the default app.
+
     def self.default_slug
         'uplifting-lemma'
     end
+
+
+    ##
+    # Get the default app.
 
     def self.default
         App.friendly.find(default_slug)
