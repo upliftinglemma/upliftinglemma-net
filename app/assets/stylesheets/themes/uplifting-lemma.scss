@@ -1,6 +1,5 @@
-// Place all the styles related to the upliftinglemma controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$primary-color: hsl(240, 43%, 37%);
+$background-color: darken($primary-color, 22%);
 
 @import "theme";
 

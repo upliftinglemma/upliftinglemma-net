@@ -1,2 +1,9 @@
-<h1>Home#show</h1>
-<p>Find me in app/views/uplifting_lemma/home/show.html.erb</p>
+<div class="page-header">
+    <h1>We offer the following apps:</h1>
+</div>
+
+<ul>
+    <%= content_tag_for :li, App.all do |app| %>
+        <h3><%= link_to app.name, app_route(app).root_url %></h3>
+    <% end %>
+</ul>
