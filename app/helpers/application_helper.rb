@@ -1,21 +1,27 @@
 module ApplicationHelper
-    def content_or_default_for(name, default=nil)
-        if content_for?(name)
-            content_for(name)
-        else
-            default
-        end
+    def app_route app=nil
+        app = get_app(app)
+
+        route = send app.route_name.to_sym
+        subdomain = if app.is_default? then false else app.slug end
+
+        ::EngineRouteModifier.new route, subdomain: subdomain
     end
 
-    def app_url
-        if @app.is_default?
-            root_url subdomain: false
-        else
-            root_url subdomain: @app.slug
-        end
+    def app_theme app=nil
+        app = get_app(app)
+        "themes/#{app.slug}"
     end
 
-    def app_theme
-        "themes/#{@app.slug}"
+    private
+
+    def get_app app
+        if app.nil? then
+            @app
+        elsif app.is_a? String then
+            App.friendly.find(app)
+        else
+            app
+        end
     end
 end

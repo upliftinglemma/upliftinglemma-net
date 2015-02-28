@@ -1,12 +1,12 @@
+require_relative '../lib/routes_helper.rb'
+
 Rails.application.routes.draw do
 
     post 'login', to: 'sessions#create'
     post 'logout', to: 'sessions#destroy'
 
-    mount UpliftingLemma::Engine, at: '/'
-
-    constraints subdomain: 'chasing-rabbits' do
-        mount Blog::Engine, at: '/', as: 'chasing_rabbits'
+    App.all.each do |app|
+        mount_app app
     end
 
 end

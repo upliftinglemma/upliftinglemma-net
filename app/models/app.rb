@@ -29,6 +29,11 @@ class App < ActiveRecord::Base
     validates_presence_of :name, :engine_name, :slug
 
 
+    def route_name
+        "#{slug.underscore}_app"
+    end
+
+
     ##
     # Look up the app's engine by the engine name (i.e., the namespace).
 
@@ -41,7 +46,7 @@ class App < ActiveRecord::Base
     # Set the app's engine to +engine+.
 
     def engine= engine
-        self.engine_name = engine.name.deconstantize
+        self.engine_name = engine.engine_name
     end
 
 

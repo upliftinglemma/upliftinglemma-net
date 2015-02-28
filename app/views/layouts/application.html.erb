@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%= content_or_default_for :title, @app.name %></title>
+        <title>
+            <%= content_for :title or @app.name %>
+        </title>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
         <%= stylesheet_link_tag    app_theme,     media: 'all', 'data-turbolinks-track' => true %>
@@ -19,28 +21,27 @@
         <div id="container" class="container">
             <div id="page">
                 <div id="header" class="jumbotron">
-                    <h1><%= link_to @app.name, app_url %></h1>
+                    <h1><%= link_to @app.name, app_route.root_url %></h1>
 
                     <% if not @app.is_default? %>
-                        <span class="powered-by">Powered by</span>
-                        <%= link_to "Uplifting Lemma", uplifting_lemma_url %>
+                        <h2>
+                            <span class="powered-by">Powered by</span>
+                            <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
+                        </h2>
                     <% end %>
+
                     <%= content_for :header %>
                 </div>
 
                 <div id="content">
-                    <% if content_for? :content %>
-                        <%= content_for :content %>
-                    <% else %>
-                        <%= yield %>
-                    <% end %>
+                    <%= content_for :content or yield %>
                 </div>
 
                 <div id="footer">
                     <% if not @app.is_default? %>
                         <!-- TODO: Write copyright code. -->
                         <span class="powered-by">Powered by</span>
-                        <%= link_to "Uplifting Lemma", uplifting_lemma_url %>
+                        <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
                     <% end %>
                     <%= content_for :footer %>
                 </div>
