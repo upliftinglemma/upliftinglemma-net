@@ -35,6 +35,7 @@ gem 'paper_trail'
 
 # App Type Engines
 gem 'uplifting_lemma', path: 'engines/uplifting_lemma'
+gem 'blog',            path: 'engines/blog'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
