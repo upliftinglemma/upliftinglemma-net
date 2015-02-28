@@ -1,14 +1,17 @@
-$primary-color: hsl(240, 43%, 37%) !default;
-$primary-image: none !default;
-$background-color: darken($primary-color, 22%) !default;
-
 html {
     height: 100%;
 }
 
 body {
     height: 100%;
-    background-color: $background-color;
+}
+
+.theme-page-shadow {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.33);
+}
+
+#background {
+    height: 100%;
 }
 
 #container {
@@ -27,12 +30,8 @@ body {
 
     background: white;
     border-radius: 3px;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.33);
 
     #header {
-        background-color: $primary-color;
-        background-image: $primary-image;
-
         h1 {
             color: white;
             text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
