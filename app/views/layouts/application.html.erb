@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><%= content_or_default_for :title, "Uplifting Lemma" %></title>
+        <title>
+            <%= content_for :title or @app.name %>
+        </title>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= stylesheet_link_tag    app_theme,     media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application',               'data-turbolinks-track' => true %>
 
         <%= content_for :head %>
 
@@ -18,18 +21,29 @@
         <div id="container" class="container">
             <div id="page">
                 <div id="header" class="jumbotron">
-                    <h1><%= content_or_default_for :app_title, "Uplifting Lemma" %></h1>
-                    <% if content_for? :subtitle %>
-                        <h2><%= content_for :subtitle %></h2>
+                    <h1><%= link_to @app.name, app_route.root_url %></h1>
+
+                    <% if not @app.is_default? %>
+                        <h2>
+                            <span class="powered-by">Powered by</span>
+                            <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
+                        </h2>
                     <% end %>
+
+                    <%= content_for :header %>
                 </div>
 
                 <div id="content">
-                    <%= content_for(:content) %>
+                    <%= content_for :content or yield %>
                 </div>
 
                 <div id="footer">
-                    <%= content_for(:footer) %>
+                    <% if not @app.is_default? %>
+                        <!-- TODO: Write copyright code. -->
+                        <span class="powered-by">Powered by</span>
+                        <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
+                    <% end %>
+                    <%= content_for :footer %>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'annotate'
 gem 'bootstrap-sass'
 gem 'browserid-auth-rails'
 gem 'disqus_rails'
@@ -31,6 +32,10 @@ gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'paper_trail'
+
+# App Type Engines
+gem 'uplifting_lemma', path: 'engines/uplifting_lemma'
+gem 'blog',            path: 'engines/blog'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

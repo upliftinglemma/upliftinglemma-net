@@ -1,4 +1,6 @@
 $primary-color: hsl(240, 43%, 37%) !default;
+$primary-image: none !default;
+$background-color: darken($primary-color, 22%) !default;
 
 html {
     height: 100%;
@@ -6,7 +8,7 @@ html {
 
 body {
     height: 100%;
-    background-color: darken($primary-color, 22%);
+    background-color: $background-color;
 }
 
 #container {
@@ -29,6 +31,7 @@ body {
 
     #header {
         background-color: $primary-color;
+        background-image: $primary-image;
 
         h1 {
             color: white;
