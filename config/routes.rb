@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     mount UpliftingLemma::Engine, at: '/'
 
     constraints subdomain: 'chasing-rabbits' do
-        mount UpliftingLemma::Engine, at: '/', as: 'chasing_rabbits'
+        mount Blog::Engine, at: '/', as: 'chasing_rabbits'
     end
 
 end
