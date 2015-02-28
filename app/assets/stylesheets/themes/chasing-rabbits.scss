@@ -2,5 +2,25 @@ $primary-color: hsl(115, 75%, 33%);
 $primary-image: image-url('chasing-rabbits/grass-overlay.png');
 $background-color: white;
 
-@import "theme";
+.app-chasing-rabbits {
+    .theme-primary-color {
+        color: $primary-color;
+    }
+
+    .theme-primary-background {
+        background-color: $primary-color;
+    }
+
+    .theme-primary-image {
+        background-image: $primary-image;
+    }
+
+    .theme-page-shadow {
+        box-shadow: none;
+    }
+
+    .theme-dark-background {
+        background-color: $background-color;
+    }
+}
 

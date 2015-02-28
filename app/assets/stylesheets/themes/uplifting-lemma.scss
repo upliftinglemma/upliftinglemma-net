@@ -1,5 +1,23 @@
 $primary-color: hsl(240, 43%, 37%);
 $background-color: darken($primary-color, 22%);
 
-@import "theme";
+.app-uplifting-lemma {
+    .theme-primary-color {
+        color: $primary-color;
+    }
+
+    .theme-primary-background {
+        background-color: $primary-color;
+    }
+
+    .theme-primary-image {
+    }
+
+    .theme-page-shadow {
+    }
+
+    .theme-dark-background {
+        background-color: $background-color;
+    }
+}
 
