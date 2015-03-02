@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'annotate'
 gem 'bootstrap-sass'
 gem 'browserid-auth-rails'
+gem 'default_value_for'
 gem 'disqus_rails'
 gem 'font-awesome-rails'
 gem 'friendly_id'

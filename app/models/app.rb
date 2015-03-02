@@ -26,7 +26,7 @@ class App < ActiveRecord::Base
 
     belongs_to :user
 
-    validates_presence_of :name, :engine_name, :slug
+    validates_presence_of :name, :type, :slug
 
 
     def route_name
@@ -35,18 +35,10 @@ class App < ActiveRecord::Base
 
 
     ##
-    # Look up the app's engine by the engine name (i.e., the namespace).
+    # Look up the app's engine by the type (i.e., the namespace).
 
     def engine
-        engine_name.constantize::Engine
-    end
-
-
-    ##
-    # Set the app's engine to +engine+.
-
-    def engine= engine
-        self.engine_name = engine.engine_name
+        self.type.deconstantize.constantize::Engine
     end
 
 
