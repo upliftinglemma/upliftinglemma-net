@@ -7,12 +7,12 @@ require "uplifting_lemma/version"
 Gem::Specification.new do |s|
   s.name        = "uplifting_lemma"
   s.version     = UpliftingLemma::VERSION
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of UpliftingLemma."
-  s.description = "TODO: Description of UpliftingLemma."
-  s.license     = "MIT"
+  s.authors     = ["Chris Bouchard"]
+  s.email       = ["chris@upliftinglemma.net"]
+  s.homepage    = "http://upliftinglemma.net"
+  s.summary     = "The homepage for Uplifting Lemma."
+  s.description = "The homepage for Uplifting Lemma."
+  s.license     = "BSD"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
