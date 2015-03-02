@@ -1,0 +1,24 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.article {
+
+    font-size: 16px;
+
+    .page-header {
+        margin-top: 0;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 50px;
+    }
+
+    .article-byline {
+        margin-top: 5px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+}

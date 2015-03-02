@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302021113) do
+ActiveRecord::Schema.define(version: 20150302172451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,8 @@ ActiveRecord::Schema.define(version: 20150302021113) do
     t.text     "body",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "author_id",  null: false
   end
 
-  add_index "blog_articles", ["author_id"], name: "index_blog_articles_on_author_id", using: :btree
   add_index "blog_articles", ["blog_id"], name: "index_blog_articles_on_blog_id", using: :btree
   add_index "blog_articles", ["slug"], name: "index_blog_articles_on_slug", unique: true, using: :btree
 
@@ -73,5 +71,4 @@ ActiveRecord::Schema.define(version: 20150302021113) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "blog_articles", "apps", column: "blog_id"
-  add_foreign_key "blog_articles", "users", column: "author_id"
 end

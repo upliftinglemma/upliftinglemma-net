@@ -4,7 +4,6 @@ module Blog
 
         has_paper_trail
 
-        belongs_to :author, class_name: "User"
         belongs_to :blog
 
         friendly_id :slug_candidates, use: :scoped, scope: :blog

@@ -1,0 +1,12 @@
+<div class="article">
+    <div class="page-header">
+        <h1>
+            <%= @article.title %>
+        </h1>
+
+        <p class="article-byline">By <%= @author.name %> on <%= @article.created_at %></p>
+    </div>
+
+    <p><%= @article.body %></p>
+</div>
+
