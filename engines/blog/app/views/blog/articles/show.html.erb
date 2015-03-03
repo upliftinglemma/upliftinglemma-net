@@ -4,9 +4,11 @@
             <%= @article.title %>
         </h1>
 
-        <p class="article-byline">By <%= @author.name %> on <%= @article.created_at %></p>
+        <p class="article-byline"><%= article_byline %></p>
     </div>
 
-    <p><%= @article.body %></p>
+    <div class="article-body">
+        <%= article_body %>
+    </div>
 </div>
 

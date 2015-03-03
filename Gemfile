@@ -33,6 +33,7 @@ gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'paper_trail'
+gem 'redcarpet'
 
 # App Type Engines
 gem 'uplifting_lemma', path: 'engines/uplifting_lemma'

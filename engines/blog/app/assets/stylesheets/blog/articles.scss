@@ -6,6 +6,7 @@
 .article {
 
     font-size: 16px;
+    line-height: 22px;
 
     .page-header {
         margin-top: 0;
@@ -19,6 +20,15 @@
     .article-byline {
         margin-top: 5px;
         color: rgba(0, 0, 0, 0.6);
+    }
+
+    .article-body {
+        -webkit-hyphens: auto;
+           -moz-hyphens: auto;
+            -ms-hyphens: auto;
+                hyphens: auto;
+
+        text-align: justify;
     }
 
 }

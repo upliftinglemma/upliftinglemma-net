@@ -13,7 +13,6 @@ module Blog
 
         def show
             @article = @app.articles.friendly.find(params[:id])
-            @author = ::User.find(@article.originator.to_i) unless @article.originator.nil?
         end
 
         def edit
