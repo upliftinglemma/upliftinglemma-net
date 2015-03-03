@@ -39,12 +39,24 @@
                     </div>
 
                     <div id="footer">
-                        <% if not @app.is_default? %>
-                            <!-- TODO: Write copyright code. -->
-                            <span class="powered-by">Powered by</span>
-                            <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
-                        <% end %>
-                        <%= content_for :footer %>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <% if not @app.is_default? %>
+                                    <!-- TODO: Write copyright code. -->
+                                    <span class="powered-by">Powered by</span>
+                                    <%= link_to "Uplifting Lemma", app_route(App.default).root_url %>
+                                <% end %>
+                                Uplifting Lemma &copy; 2015 Chris Bouchard.
+                            </div>
+
+                            <div class="col-sm-3 hidden-xs text-right">
+                                <% if browserid_authenticated? %>
+                                    <%= logout_link "Log out #{browserid_current_user.name}" %>
+                                <% else %>
+                                    <%= login_link "Log in" %>
+                                <% end %>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

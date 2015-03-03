@@ -4,6 +4,8 @@
 
 <ul>
     <%= content_tag_for :li, App.all do |app| %>
-        <h3><%= link_to app.name, app_route(app).root_url %></h3>
+        <%= link_to app.name, app_route(app).root_url %>
     <% end %>
 </ul>
+
+<p>Current user: <%= browserid_current_user.inspect %></p>

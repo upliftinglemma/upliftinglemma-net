@@ -72,7 +72,7 @@ body {
     }
 
     #content {
-        padding: 0 10px 30px 10px;
+        padding: 0 10px 40px 10px;
     }
 
     #footer {
@@ -81,10 +81,18 @@ body {
         bottom: 0;
         left: 0;
 
-        padding: 10px 20px;
+        padding: 20px 20px;
 
-        font-size: small;
+        font-size: 10px;
         color: gray;
     }
+}
+
+a.browserid_login, a.browserid_logout {
+    padding-left: 1.66em;
+    background-image: image-url('persona-logo-glyph.svg');
+    background-repeat: no-repeat;
+    background-size: auto 1em;
+    background-position: left;
 }
 
