@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302172451) do
+ActiveRecord::Schema.define(version: 20150305022208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,21 @@ ActiveRecord::Schema.define(version: 20150302172451) do
   add_index "blog_articles", ["blog_id"], name: "index_blog_articles_on_blog_id", using: :btree
   add_index "blog_articles", ["slug"], name: "index_blog_articles_on_slug", unique: true, using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "title",            limit: 50, default: ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.string   "role",                        default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.integer  "app_id",     null: false
     t.integer  "user_id",    null: false
@@ -71,4 +86,5 @@ ActiveRecord::Schema.define(version: 20150302172451) do
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   add_foreign_key "blog_articles", "apps", column: "blog_id"
+  add_foreign_key "comments", "users"
 end
