@@ -11,7 +11,8 @@
 
         <%= content_for :head %>
 
-        <%= disqus_init %>
+        <%= disqus_init short_name: app_short_name %>
+
         <%= setup_browserid %>
         <%= csrf_meta_tags %>
 
@@ -21,7 +22,7 @@
         <div id="background" class="theme-dark-background">
             <div id="container" class="container">
                 <div id="page" class="theme-page-shadow">
-                    <div id="header" class="jumbotron theme-primary-background theme-primary-image">
+                    <header id="header" role="banner" class="jumbotron theme-primary-background theme-primary-image">
                         <h1><%= link_to @app.name, app_route.root_url %></h1>
 
                         <% if not @app.is_default? %>
@@ -32,13 +33,13 @@
                         <% end %>
 
                         <%= content_for :header %>
-                    </div>
+                    </header>
 
-                    <div id="content">
-                        <%= content_for :content or yield %>
-                    </div>
+                    <main id="content" role="main">
+                        <%= content_for :content %>
+                    </main>
 
-                    <div id="footer">
+                    <footer id="footer" role="contentinfo">
                         <div class="row">
                             <div class="col-sm-9">
                                 <% if not @app.is_default? %>
@@ -57,7 +58,7 @@
                                 <% end %>
                             </div>
                         </div>
-                    </div>
+                    </footer>
                 </div>
             </div>
         </div>

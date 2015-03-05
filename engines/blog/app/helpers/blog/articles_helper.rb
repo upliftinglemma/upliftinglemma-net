@@ -24,7 +24,7 @@ module Blog
 
         def article_byline article=nil
             article ||= @article
-            "By #{author_name article} on #{article.created_at.to_s :long_ordinal}"
+            "By #{author_name article} on #{article.created_at.to_s :nice_ordinal}"
         end
 
         private

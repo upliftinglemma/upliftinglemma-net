@@ -22,6 +22,16 @@ module ApplicationHelper
         %W(#{app_class app} theme-#{prop})
     end
 
+    def app_short_name app=nil
+        app = get_app app
+
+        if app.is_default?
+            "upliftinglemma"
+        else
+            "upliftinglemma-#{@app.slug}"
+        end
+    end
+
     private
 
     def get_app app

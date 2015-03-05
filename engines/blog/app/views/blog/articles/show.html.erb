@@ -1,14 +1,4 @@
-<div class="article">
-    <div class="page-header">
-        <h1>
-            <%= @article.title %>
-        </h1>
+<%= render @article %>
 
-        <p class="article-byline"><%= article_byline %></p>
-    </div>
-
-    <div class="article-body">
-        <%= article_body %>
-    </div>
-</div>
+<%- disqus_thread @article.slug, @article.title %>
 

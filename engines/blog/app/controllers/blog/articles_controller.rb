@@ -1,6 +1,9 @@
+require_dependency "blog/application_controller"
+
 module Blog
     class ArticlesController < ApplicationController
         def index
+            @articles = @app.articles.order(created_at: :desc).take 5
         end
 
         def new
