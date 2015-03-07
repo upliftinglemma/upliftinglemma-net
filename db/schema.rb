@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 20150305022208) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "logins", force: :cascade do |t|
+    t.string  "email",                    null: false
+    t.integer "user_id",                  null: false
+    t.boolean "disabled", default: false, null: false
+  end
+
+  add_index "logins", ["email"], name: "index_logins_on_email", unique: true, using: :btree
+  add_index "logins", ["user_id"], name: "index_logins_on_user_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.integer  "app_id",     null: false
     t.integer  "user_id",    null: false
@@ -66,13 +75,15 @@ ActiveRecord::Schema.define(version: 20150305022208) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",      null: false
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "email",            null: false
+    t.string   "name",             null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "primary_login_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["primary_login_id"], name: "index_users_on_primary_login_id", using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false
@@ -87,4 +98,6 @@ ActiveRecord::Schema.define(version: 20150305022208) do
 
   add_foreign_key "blog_articles", "apps", column: "blog_id"
   add_foreign_key "comments", "users"
+  add_foreign_key "logins", "users"
+  add_foreign_key "users", "logins", column: "primary_login_id"
 end
