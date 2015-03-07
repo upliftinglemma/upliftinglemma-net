@@ -4,6 +4,8 @@ module Blog
 
         has_paper_trail
 
+        acts_as_commentable
+
         belongs_to :blog
 
         friendly_id :slug_candidates, use: :scoped, scope: :blog

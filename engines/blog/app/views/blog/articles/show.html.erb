@@ -1,4 +1,5 @@
 <%= render @article %>
 
-<%- disqus_thread @article.slug, @article.title %>
+<%#- disqus_thread @article.slug, @article.title %>
+<%= @article.comments.inspect %>
 
