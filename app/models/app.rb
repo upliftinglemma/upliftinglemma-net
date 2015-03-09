@@ -20,11 +20,10 @@ class App < ActiveRecord::Base
 
     has_paper_trail
 
-    friendly_id :name, use: :slugged
-
     has_many :roles
+    has_many :users, through: :roles
 
-    belongs_to :user
+    friendly_id :name, use: :slugged
 
     validates_presence_of :name, :type, :slug
 
@@ -45,8 +44,13 @@ class App < ActiveRecord::Base
     ##
     # Decide if this app is the default app.
 
-    def is_default?
+    def default?
         slug == self.class.default_slug
+    end
+
+
+    def roles_for user
+        roles.where(user: user)
     end
 
 

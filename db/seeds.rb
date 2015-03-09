@@ -8,16 +8,18 @@ chris, mary = User.create [
 ]
 
 uplifting_lemma = UpliftingLemma::UpliftingLemma.create(
-    name: 'Uplifting Lemma', user: chris, license: 'cc by-nc 4.0'
+    name: 'Uplifting Lemma', license: 'cc by-nc 4.0'
 )
 
 chasing_rabbits = Blog::Blog.create(
-    name: 'Chasing Rabbits', user: mary
+    name: 'Chasing Rabbits'
 )
 
 Role.create [
     {app: uplifting_lemma, user: chris, role: 'owner'},
-    {app: chasing_rabbits, user: mary, role: 'owner'}
+    {app: chasing_rabbits, user: chris, role: 'writer'},
+    {app: chasing_rabbits, user: mary, role: 'owner'},
+    {app: chasing_rabbits, user: mary, role: 'writer'}
 ]
 
 PaperTrail.whodunnit = mary.id.to_s
