@@ -3,7 +3,7 @@ module ApplicationHelper
         app = get_app app
 
         route = send app.route_name.to_sym
-        subdomain = if app.is_default? then false else app.slug end
+        subdomain = if app.default? then false else app.slug end
 
         ::EngineRouteModifier.new route, subdomain: subdomain
     end
@@ -22,13 +22,17 @@ module ApplicationHelper
         %W(#{app_class app} theme-#{prop})
     end
 
-    def app_short_name app=nil
-        app = get_app app
 
-        if app.is_default?
-            "upliftinglemma"
-        else
-            "upliftinglemma-#{@app.slug}"
+
+    def toolbar_item *args, **kwargs, &block
+        content_tag :li do
+            link_to *args, **kwargs, &block
+        end
+    end
+
+    def toolbar_text content = nil, &block
+        content_tag :li do
+            content_tag :p, content, class: 'navbar-text', &block
         end
     end
 

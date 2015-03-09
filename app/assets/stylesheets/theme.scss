@@ -32,6 +32,8 @@ body {
     border-radius: 3px;
 
     #header {
+        margin-bottom: 0;
+
         h1 {
             color: white;
             text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
@@ -71,8 +73,20 @@ body {
         }
     }
 
+    #toolbar {
+        margin: 0 0 5px 0;
+        background: none;
+        border: none;
+    }
+
+    .icon {
+        position: relative;
+        top: 1px;
+        margin-right: 3px;
+    }
+
     #content {
-        padding: 0 10px 50px 10px;
+        padding: 0 10px 70px 10px;
     }
 
     #footer {
@@ -86,13 +100,5 @@ body {
         font-size: 10px;
         color: gray;
     }
-}
-
-a.browserid_login, a.browserid_logout {
-    padding-left: 1.66em;
-    background-image: image-url('persona-logo-glyph.svg');
-    background-repeat: no-repeat;
-    background-size: auto 1em;
-    background-position: left;
 }
 

@@ -1,0 +1,28 @@
+<nav id="toolbar" class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <% for_user do |f| %>
+                <% f.with_somebody do |user| %>
+                    <%= toolbar_text do %>
+                        Welcome, <a href="#" class="navbar-link"><%= user.name %></a>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+            <%= content_for :toolbar %>
+
+            <% for_user do |f| %>
+                <% f.with_somebody do %>
+                    <%= toolbar_item 'Log out', '/logout', class: 'browserid_logout' %>
+                <% end %>
+
+                <% f.with_nobody do %>
+                    <%= toolbar_item '/login', class: 'browserid_login', title: 'Log in using Persona' do %>
+                        <span class="icon-persona-logo-glyph icon"></span> Log in
+                    <% end %>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</nav>
+

@@ -3,4 +3,6 @@
     <%= javascript_include_tag "uplifting_lemma/application" %>
 <% end %>
 
+<% content_for :content, yield %>
+
 <%= render template: "layouts/application" %>

@@ -1,2 +1,16 @@
-<h1>Articles#new</h1>
-<p>Find me in app/views/blog/articles/new.html.erb</p>
+<%= form_for @article do |article_form| %>
+    <div class="form-group">
+        <%= article_form.label :title, 'Title' %>
+        <%= article_form.text_field :title, class: 'form-control input-lg' %>
+    </div>
+    <div class="form-group">
+        <%= article_form.label :body, 'Body' %>
+        <%= article_form.text_area :body, class: 'form-control', rows: 5 %>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-9">
+            <%= article_form.submit 'Post', class: 'btn btn-block btn-primary' %>
+        </div>
+    </div>
+<% end %>

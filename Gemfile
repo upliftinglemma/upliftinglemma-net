@@ -35,6 +35,7 @@ gem 'friendly_id'
 gem 'gravatar_image_tag'
 gem 'paper_trail'
 gem 'redcarpet'
+gem 'truncate_html'
 
 # App Type Engines
 gem 'uplifting_lemma', path: 'engines/uplifting_lemma'

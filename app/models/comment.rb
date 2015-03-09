@@ -15,4 +15,8 @@ class Comment < ActiveRecord::Base
     # NOTE: Comments belong to a user
     belongs_to :user
 
+    def author
+        ::User.find_by id: originator.to_i
+    end
+
 end

@@ -1,5 +1,7 @@
 <%= render @article %>
 
-<%#- disqus_thread @article.slug, @article.title %>
-<%= @article.comments.inspect %>
+<div id="comments-area">
+    <h2>Comments</h2>
+    <%= render collection: @article.comments, partial: '/comments/comment' %>
+</div>
 
