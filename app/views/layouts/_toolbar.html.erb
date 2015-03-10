@@ -1,0 +1,22 @@
+<nav id="toolbar" class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <% if authenticated? %>
+                <%= toolbar_text do %>
+                    Welcome, <a href="#" class="navbar-link"><%= user.name %></a>
+                <% end %>
+            <% end %>
+
+            <%= content_for :toolbar %>
+
+            <% if authenticated? %>
+                <%= toolbar_item 'Log out', '/logout', class: 'browserid_logout' %>
+            <% else %>
+                <%= toolbar_item '/login', class: 'browserid_login', title: 'Log in using Persona' do %>
+                    <span class="icon-persona-logo-glyph icon"></span> Log in
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</nav>
+

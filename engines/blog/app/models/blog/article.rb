@@ -1,10 +1,8 @@
 module Blog
     class Article < ActiveRecord::Base
-        extend ::FriendlyId
-
-        has_paper_trail
-
-        acts_as_commentable
+        include ::Commentable
+        include ::FriendlyId
+        include ::Posted
 
         belongs_to :blog
 

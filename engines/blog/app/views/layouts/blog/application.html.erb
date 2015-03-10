@@ -1,13 +1,11 @@
 <% content_for :head do %>
-    <%= stylesheet_link_tag    "blog/application", media: "all" %>
-    <%= javascript_include_tag "blog/application" %>
+    <%= stylesheet_link_tag    'blog/application', media: 'all' %>
+    <%= javascript_include_tag 'blog/application' %>
 <% end %>
 
 <% content_for :toolbar do %>
-    <% for_user do |f| %>
-        <% f.with_role 'writer' do %>
-            <%= toolbar_item 'New post', new_article_path %>
-        <% end %>
+    <% if can? :post, Article %>
+        <%= toolbar_item 'New post', new_article_path %>
     <% end %>
 <% end %>
 
@@ -23,4 +21,4 @@
     </div>
 <% end %>
 
-<%= render template: "layouts/application" %>
+<%= render template: 'layouts/application' %>

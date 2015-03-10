@@ -28,18 +28,20 @@ gem 'acts_as_commentable'
 gem 'annotate'
 gem 'bootstrap-sass'
 gem 'browserid-auth-rails'
+gem 'cancan'
 #gem 'default_value_for'
 gem 'disqus_rails'
 gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'gravatar_image_tag'
+gem 'kaminari'
 gem 'paper_trail'
 gem 'redcarpet'
 gem 'truncate_html'
 
 # App Type Engines
-gem 'uplifting_lemma', path: 'engines/uplifting_lemma'
 gem 'blog',            path: 'engines/blog'
+gem 'uplifting_lemma', path: 'engines/uplifting_lemma'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

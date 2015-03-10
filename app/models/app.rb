@@ -16,7 +16,7 @@
 #
 
 class App < ActiveRecord::Base
-    extend FriendlyId
+    include FriendlyId
 
     has_paper_trail
 

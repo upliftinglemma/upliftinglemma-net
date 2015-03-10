@@ -7,43 +7,33 @@ class ApplicationController < ActionController::Base
 
     before_filter :load_app
 
-    helper_method :authenticated?, :current_user, :for_user
+    helper_method :authenticated?, :current_user
 
     alias_method :authenticated?, :browserid_authenticated?
     alias_method :current_user, :browserid_current_user
 
-    def for_user user=nil, app=nil
-        user ||= current_user
-        app ||= @app
-
-        filter = UserFilter.new user, app
-        yield filter
-
-        nil
-    end
-
-    protected
-
-    def require_role role
-        for_user do |f|
-            f.without_role role do |user|
-                raise User::NotAuthorized
-            end
-
-            f.with_nobody do
-                raise User::NotAuthorized
-            end
-        end
-    end
 
     private
 
-    # Determine which app we are currently running based on the subdomain.
+
+    # Allow engines to define their own abilities for CanCan.
+    def current_ability
+        namespace = self.class.name.deconstantize
+        ability_class = "#{namespace}::Ability".constantize
+
+        ability_class.new current_user
+    end
+
+    # Determine which app we are currently running based on the subdomain, and
+    # make sure we are authorized to access it.
     def load_app
         if request.subdomain.blank?
             @app = App.default
         else
-            @app = App.friendly.find(request.subdomain)
+            @app = App.friendly.find request.subdomain
         end
+
+        authorize! :access, @app
     end
 end
+

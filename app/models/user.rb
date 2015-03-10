@@ -19,14 +19,11 @@ class User < ActiveRecord::Base
     has_many :apps, through: :roles
 
     def roles_for app
-        roles.where(app: app)
+        roles.where app: app
     end
 
     def has_role_for role, app
         roles_for(app).where(role: role).exists?
     end
-
-
-    class NotAuthorized < StandardError
-    end
 end
+
