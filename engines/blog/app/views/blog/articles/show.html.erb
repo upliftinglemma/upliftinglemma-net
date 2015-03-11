@@ -1,7 +1,3 @@
 <%= render @article %>
-
-<div id="comments-area">
-    <h2>Comments</h2>
-    <%= render collection: @article.comments, partial: '/comments/comment' %>
-</div>
+<%= render '/comments/comment_area', { commentable: @article } %>
 

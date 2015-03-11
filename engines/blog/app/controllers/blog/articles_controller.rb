@@ -18,6 +18,7 @@ module Blog
 
         def show
             @article = @app.articles.friendly.find params[:id]
+            @comment = @article.comments.new
         end
 
         def edit

@@ -1,1 +1,2 @@
-<%= render collection: @articles, partial: 'article_summary', as: :article %>
+<%= render collection: @articles, locals: { summary: true } %>
+
