@@ -3,7 +3,7 @@
         <ul class="nav navbar-nav navbar-right">
             <% if authenticated? %>
                 <%= toolbar_text do %>
-                    Welcome, <a href="#" class="navbar-link"><%= user.name %></a>
+                    Welcome, <a href="#" class="navbar-link"><%= current_user.name %></a>
                 <% end %>
             <% end %>
 

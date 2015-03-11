@@ -35,20 +35,30 @@ class App < ActiveRecord::Base
 
     ##
     # Look up the app's engine by the type (i.e., the namespace).
-
+    #
     def engine
-        self.type.deconstantize.constantize::Engine
+        type.deconstantize.constantize::Engine
+    end
+
+
+    ##
+    # Look up the app's owner by role.
+    #
+    def owner
+        User.joins(:roles).where('roles.role' => 'owner', 'roles.app_id' => id).first
     end
 
 
     ##
     # Decide if this app is the default app.
-
+    #
     def default?
-        slug == self.class.default_slug
+        self == self.class.default
     end
 
 
+    ##
+    # Get the roles for the given user in this app.
     def roles_for user
         roles.where(user: user)
     end
@@ -56,7 +66,7 @@ class App < ActiveRecord::Base
 
     ##
     # The slug of the default app.
-
+    #
     def self.default_slug
         'uplifting-lemma'
     end
@@ -64,8 +74,9 @@ class App < ActiveRecord::Base
 
     ##
     # Get the default app.
-
+    #
     def self.default
         App.friendly.find(default_slug)
     end
 end
+

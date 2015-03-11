@@ -2,7 +2,7 @@ require_dependency "blog/application_controller"
 
 module Blog
     class ArticlesController < ApplicationController
-        load_and_authorize_resource
+        load_and_authorize_resource find_by: :slug
 
         def index
             @articles = @articles.page params[:page]
@@ -17,12 +17,9 @@ module Blog
         end
 
         def show
-            @article = @app.articles.friendly.find params[:id]
         end
 
         def edit
-            require_role 'writer'
-            @article = @app.articles.friendly.find params[:id]
         end
 
         def update

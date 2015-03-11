@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
         namespace = self.class.name.deconstantize
         ability_class = "#{namespace}::Ability".constantize
 
-        ability_class.new current_user
+        ability_class.new current_user, @app
     end
 
     # Determine which app we are currently running based on the subdomain, and

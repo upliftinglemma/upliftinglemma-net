@@ -1,7 +1,7 @@
 class Ability
     include CanCan::Ability
 
-    def initialize user
+    def initialize user, app
         alias_action :index, :show, to: :read
         alias_action :new, :create, to: :post
         alias_action :edit, :update, :destroy, to: :modify
