@@ -1,3 +1,5 @@
+<% summary = local_assigns.fetch :summary, false %>
+
 <article class="article">
     <div class="page-header">
         <h1 class="article-title">
@@ -8,7 +10,22 @@
     </div>
 
     <div class="article-body">
-        <%= article_body article %>
+        <% if summary %>
+            <%= truncate_html article_body(article), length: 500, omission: ' &hellip;'.html_safe %>
+        <% else %>
+            <%= article_body article %>
+        <% end %>
     </div>
+
+    <% if summary %>
+        <ul class="list-inline">
+            <li><%= link_to article do %>
+                Read the full article
+            <% end %></li>
+            <li><%= link_to article_path(article, anchor: 'comments') do %>
+                Read the comments (<%= article.comments.count %>)
+            <% end %></li>
+        </ul>
+    <% end %>
 </article>
 

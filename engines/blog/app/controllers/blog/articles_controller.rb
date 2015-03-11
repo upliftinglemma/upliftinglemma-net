@@ -17,6 +17,7 @@ module Blog
         end
 
         def show
+            @comment = @article.comments.new
         end
 
         def edit
