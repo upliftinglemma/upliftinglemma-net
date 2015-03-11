@@ -1,2 +1,6 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/blog/articles/edit.html.erb</p>
+<div class="page-header">
+    <h1>Edit Article</h1>
+</div>
+
+<%= render object: @article, partial: 'article_form', as: :article %>
+

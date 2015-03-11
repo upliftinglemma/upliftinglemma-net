@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'acts_as_commentable'
 gem 'annotate'
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 gem 'browserid-auth-rails'
 gem 'cancan'
 #gem 'default_value_for'

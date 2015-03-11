@@ -1,0 +1,15 @@
+<%= bootstrap_form_for article do |form| %>
+    <%= form.text_field :title, class: 'input-lg', label: 'Title' %>
+    <%= form.text_area :body, rows: 5, label: 'Body' %>
+
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-9">
+            <% if article.new_record? %>
+                <%= form.submit 'Post', class: 'btn btn-block btn-primary' %>
+            <% else %>
+                <%= form.submit 'Edit', class: 'btn btn-block btn-primary' %>
+            <% end %>
+        </div>
+    </div>
+<% end %>
+
