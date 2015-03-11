@@ -1,8 +1,9 @@
 <article class="media comment">
     <div class="media-left">
-        <a href="#">
-            <%= gravatar_image_tag comment.author.email, alt: comment.author.name, gravatar: { default: :identicon, size: 50 } %>
-        </a>
+        <%= gravatar_image_tag comment.author.email,
+            alt: comment.author.name,
+            gravatar: { default: :identicon, size: 50 }
+        %>
     </div>
     <div class="media-body">
         <%= comment.comment %>
