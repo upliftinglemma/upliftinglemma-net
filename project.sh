@@ -151,9 +151,15 @@ bundle_exec(){
   docker-compose run web bundle exec $command
 }
 
+bundle_install(){
+  # Teaching docker-compose commands, one at a time.
+  print_info "Running"
+  print_info "  docker-compose run web bundle install"
+  docker-compose run web bundle install
+}
+
 stop(){
   docker-compose stop
-  docker-compose rm
 }
 
 clean(){
@@ -189,6 +195,10 @@ case "$1" in
     bundle_exec ${@:2}
   ;;
 
+  "install")
+    bundle_install
+  ;;
+
   "console")
     bundle_exec "rails console" ${@:2}
   ;;
@@ -219,7 +229,9 @@ case "$1" in
     print_normal "Available commands:"
     print_normal "  bootstrap"
     print_normal "  start"
+    print_normal "  stop"
     print_normal "  exec"
+    print_normal "  install"
     print_normal "  console"
     print_normal "  clean"
     print_normal "  project-clean"
