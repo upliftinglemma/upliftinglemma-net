@@ -2,7 +2,7 @@
     <h2>Comments</h2>
     <%= render partial: '/comments/comment', collection: @comments %>
 
-    <%= bootstrap_form_for [@commentable, @new_comment] do |form| %>
+    <%= form_for [@commentable, @new_comment], layout: :basic do |form| %>
         <%= form.hidden_field :commentable_id %>
         <%= form.hidden_field :commentable_type %>
 
@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-9">
-                        <%= form.submit class: 'btn btn-block btn-primary' %>
+                        <%= form.submit layout: :block %>
                     </div>
                 </div>
             </div>
