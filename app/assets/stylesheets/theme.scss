@@ -100,5 +100,18 @@ body {
         font-size: 10px;
         color: gray;
     }
+
+    #comment-area {
+        margin-top: 50px;
+
+        .comment-byline {
+            margin-bottom: 3px;
+            font-size: small;
+
+            .comment-author, .comment-time {
+                font-weight: bold;
+            }
+        }
+    }
 }
 

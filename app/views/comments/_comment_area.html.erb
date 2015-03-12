@@ -14,11 +14,11 @@
                 %>
             </div>
             <div class="media-body">
-                <%= form.text_area :comment %>
+                <%= form.text_area :comment, label: 'New Comment' %>
 
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-9">
-                        <%= form.submit 'Post', class: 'btn btn-block btn-primary' %>
+                        <%= form.submit class: 'btn btn-block btn-primary' %>
                     </div>
                 </div>
             </div>

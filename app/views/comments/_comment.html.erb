@@ -6,6 +6,9 @@
         %>
     </div>
     <div class="media-body">
+        <div class="comment-byline">
+            <%= comment_author comment %> on <%= comment_time comment %>
+        </div>
         <%= comment.comment %>
     </div>
 </article>

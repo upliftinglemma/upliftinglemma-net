@@ -14,8 +14,11 @@ module Blog
         end
 
         def create
-            @article.save!
-            redirect_to article_path(@article)
+            if @article.save
+                redirect_to article_path(@article)
+            else
+                render :new
+            end
         end
 
         def show
@@ -26,13 +29,19 @@ module Blog
         end
 
         def update
-            @article.save!
-            redirect_to article_path(@article)
+            if @article.save
+                redirect_to article_path(@article)
+            else
+                render :edit
+            end
         end
 
         def destroy
-            @article.destroy!
-            redirect_to article_index_path
+            if @article.destroy
+                redirect_to article_index_path
+            else
+                render :show
+            end
         end
 
         private
