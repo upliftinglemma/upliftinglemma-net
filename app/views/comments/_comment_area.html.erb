@@ -1,12 +1,15 @@
 <section id="comment-area">
     <h2>Comments</h2>
-    <%= render collection: commentable.comments %>
+    <%= render partial: '/comments/comment', collection: @comments %>
 
-    <%= bootstrap_form_for @comment do |form| %>
+    <%= bootstrap_form_for [@commentable, @new_comment] do |form| %>
+        <%= form.hidden_field :commentable_id %>
+        <%= form.hidden_field :commentable_type %>
+
         <div class="media comment">
             <div class="media-left">
-                <%= gravatar_image_tag comment.author.email,
-                    alt: comment.author.name,
+                <%= gravatar_image_tag current_user.email,
+                    alt: current_user.name,
                     gravatar: { default: :identicon, size: 50 }
                 %>
             </div>
@@ -15,7 +18,7 @@
 
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-9">
-                        <%= form.submit class: 'btn btn-block btn-primary' %>
+                        <%= form.submit 'Post', class: 'btn btn-block btn-primary' %>
                     </div>
                 </div>
             </div>

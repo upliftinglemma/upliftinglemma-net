@@ -2,6 +2,8 @@ require_dependency "blog/application_controller"
 
 module Blog
     class ArticlesController < ApplicationController
+        include HasComments
+
         load_and_authorize_resource find_by: :slug
 
         def index
@@ -17,7 +19,7 @@ module Blog
         end
 
         def show
-            @comment = @article.comments.new
+            load_comments
         end
 
         def edit

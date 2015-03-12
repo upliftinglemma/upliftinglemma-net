@@ -10,9 +10,13 @@ class Ability
         can :read, Comment
 
         if user.present?
-            can :post, Comment
+            can :post, Comment do |comment|
+                can? :read, comment.commentable
+            end
+
             can :modify, Comment do |comment|
-                comment.author == user
+                can? :read, comment.commentable and
+                    comment.author == user
             end
         end
     end

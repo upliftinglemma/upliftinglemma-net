@@ -29,7 +29,7 @@ gem 'annotate'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'browserid-auth-rails'
-gem 'cancan'
+gem 'cancancan'
 #gem 'default_value_for'
 gem 'disqus_rails'
 gem 'font-awesome-rails'
@@ -58,7 +58,9 @@ group :development, :test do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  # gem 'web-console', '~> 2.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

@@ -4,8 +4,8 @@ class EngineRouteModifier < SimpleDelegator
         @options = options
     end
 
-    def method_missing method, *args, &block
-        super method, *args, **@options, &block
+    def method_missing method, *args, **kwargs, &block
+        super method, *args, **kwargs, **@options, &block
     end
 end
 

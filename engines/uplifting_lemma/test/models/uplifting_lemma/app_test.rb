@@ -1,7 +1,7 @@
 require 'test_helper'
 
-module Blog
-  class BlogTest < ActiveSupport::TestCase
+module UpliftingLemma
+  class AppTest < ActiveSupport::TestCase
     # test "the truth" do
     #   assert true
     # end

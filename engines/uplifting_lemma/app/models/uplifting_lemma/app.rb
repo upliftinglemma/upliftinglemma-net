@@ -1,4 +1,4 @@
 module UpliftingLemma
-    class UpliftingLemma < ::App
+    class App < ::App
     end
 end

@@ -7,11 +7,11 @@ chris, mary = User.create [
     {email: 'mferro54@gmail.com', name: 'Mary Ferro'}
 ]
 
-uplifting_lemma = UpliftingLemma::UpliftingLemma.create(
+uplifting_lemma = UpliftingLemma::App.create(
     name: 'Uplifting Lemma', license: 'cc by-nc 4.0'
 )
 
-chasing_rabbits = Blog::Blog.create(
+chasing_rabbits = Blog::App.create(
     name: 'Chasing Rabbits'
 )
 

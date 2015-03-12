@@ -1,13 +1,4 @@
 module ApplicationHelper
-    def app_route app=nil
-        app = get_app app
-
-        route = send app.route_name.to_sym
-        subdomain = if app.default? then false else app.slug end
-
-        ::EngineRouteModifier.new route, subdomain: subdomain
-    end
-
     def app_stylesheet app=nil
         app = get_app app
         "themes/#{app.slug}"
@@ -33,18 +24,6 @@ module ApplicationHelper
     def toolbar_text content = nil, &block
         content_tag :li do
             content_tag :p, content, class: 'navbar-text', &block
-        end
-    end
-
-    private
-
-    def get_app app
-        if app.nil?
-            @app
-        elsif app.is_a? String
-            App.friendly.find app
-        else
-            app
         end
     end
 end

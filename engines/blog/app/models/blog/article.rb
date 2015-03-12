@@ -4,7 +4,7 @@ module Blog
         include ::FriendlyId
         include ::Posted
 
-        belongs_to :blog
+        belongs_to :blog, class_name: 'Blog::App'
 
         friendly_id :slug_candidates, use: :scoped, scope: :blog
 
@@ -18,7 +18,7 @@ module Blog
         # Validates that the app we're calling a blog is, in fact, a blog.
 
         def blog_is_a_blog
-            blog.is_a? Blog
+            blog.is_a? Blog::App
         end
 
 
