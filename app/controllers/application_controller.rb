@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
     #
     def self.load_and_authorize_model model_name=nil, scope: nil, class_name: nil
         before_action do |controller|
-            model_name ||= controller.controller_name
+            model_name ||= controller.controller_name.singularize
 
             # If the class name is not specified, use the model name. Assume
             # the class is in the same namespace as the controller.
@@ -77,14 +77,15 @@ class ApplicationController < ActionController::Base
                     else model_scope.find params[:id]
                     end
 
-                controller.authorize model
-                controller.instance_variable_set model_variable, model
-
-                if controller.action_name == 'update'
+                case controller.action_name
+                when 'create', 'update'
                     params_method = "#{model_name}_params"
                     safe_params = controller.send params_method
                     model.assign_attributes safe_params
                 end
+
+                controller.authorize model
+                controller.instance_variable_set model_variable, model
             end
         end
     end
@@ -112,7 +113,7 @@ class ApplicationController < ActionController::Base
     # Override the user passed to pundit
     #
     def pundit_user
-        AppUser.new app: @app, user: current_user
+        AppUser.new @app, current_user
     end
 end
 

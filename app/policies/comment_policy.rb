@@ -8,7 +8,9 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def delete?
-        update?
+        update? or
+            record.commentable.responds_to? :author and
+            record.commentable.author == user
     end
 end
 
