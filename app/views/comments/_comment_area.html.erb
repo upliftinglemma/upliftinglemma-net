@@ -17,8 +17,12 @@
                 <%= form.text_area :comment, label: 'New Comment' %>
 
                 <div class="row">
-                    <div class="col-sm-3 col-sm-offset-9">
-                        <%= form.submit layout: :block %>
+                    <div class="col-sm-3 col-sm-push-9">
+                        <%= form.submit class: 'btn btn-primary btn-block' %>
+                    </div>
+                    <div class="col-sm-9 col-sm-pull-3">
+                        <p class="small">You can format your comment using
+                        <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
                     </div>
                 </div>
             </div>

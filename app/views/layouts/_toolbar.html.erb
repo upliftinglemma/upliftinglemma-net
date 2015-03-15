@@ -1,6 +1,9 @@
-<nav id="toolbar" class="navbar navbar-default">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-right">
+<%= navbar fluid: true do %>
+    <%= vertical do %>
+    <% end %>
+
+    <%= horizontal do %>
+        <%= nav class: 'navbar-right' do %>
             <% if authenticated? %>
                 <%= toolbar_text do %>
                     Welcome, <a href="#" class="navbar-link"><%= current_user.name %></a>
@@ -16,7 +19,7 @@
                     <span class="icon-persona-logo-glyph icon"></span> Log in
                 <% end %>
             <% end %>
-        </ul>
-    </div>
-</nav>
+        <% end %>
+    <% end %>
+<% end %>
 
