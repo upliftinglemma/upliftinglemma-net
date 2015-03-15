@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    load_and_authorize_resource
+    load_and_authorize_model
 
     def create
         @comment.save!

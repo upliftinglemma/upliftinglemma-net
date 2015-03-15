@@ -79,7 +79,6 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    cancancan (1.10.1)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -137,6 +136,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.3)
       pry (>= 0.9.10)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -220,7 +221,6 @@ DEPENDENCIES
   browserid-auth-rails
   bullet
   byebug
-  cancancan
   disqus_rails
   font-awesome-rails
   friendly_id
@@ -231,6 +231,7 @@ DEPENDENCIES
   paper_trail
   pg
   pry-rails
+  pundit
   rails (= 4.2.0)
   rake (= 10.4.2)
   redcarpet
