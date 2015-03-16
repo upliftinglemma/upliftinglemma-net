@@ -126,9 +126,9 @@ class ApplicationController < ActionController::Base
                     safe_params = send params_method
                 else
                     # Otherwise, get the permitted fields from the policy.
-                    permitted_fields = policy(model).permitted_fields
+                    permitted = policy(model).permitted_attributes
                     safe_params =
-                        params.require(model_name).permit *permitted_fields
+                        params.require(model_name).permit *permitted
                 end
 
                 # Do the assignment

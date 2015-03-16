@@ -49,7 +49,7 @@ class ApplicationPolicy
         false
     end
 
-    def permitted_fields
+    def permitted_attributes
         []
     end
 

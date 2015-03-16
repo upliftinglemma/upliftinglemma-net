@@ -15,11 +15,5 @@ class CommentsController < ApplicationController
         @comment.destroy
         redirect_to send(@app.route_name).url_for(@comment.commentable)
     end
-
-    private
-
-    def comment_params
-        params.require(:comment).permit(*policy(@comment).permitted_fields)
-    end
 end
 

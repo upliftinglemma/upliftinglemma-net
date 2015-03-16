@@ -24,6 +24,10 @@ module Blog
         def owner?
             user.present? and model.author == user
         end
+
+        def permitted_attributes
+            [:title, :tagline, :body]
+        end
     end
 end
 

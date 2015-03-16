@@ -43,12 +43,6 @@ module Blog
                 render :show
             end
         end
-
-        private
-
-        def article_params
-            params.require(:article).permit(:title, :tagline, :body)
-        end
     end
 end
 

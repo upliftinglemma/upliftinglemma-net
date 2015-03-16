@@ -16,7 +16,7 @@ class CommentPolicy < ApplicationPolicy
         user.present? and model.author == user
     end
 
-    def permitted_fields
+    def permitted_attributes
         [:commentable_id, :commentable_type, :comment]
     end
 end
