@@ -10,6 +10,11 @@
             <%= comment_author comment %> on <%= comment_time comment %>
         </div>
         <%= comment.comment %>
+        <% if policy(comment).destroy? %>
+            <%= form_for [comment.commentable, comment], layout: :inline, method: :delete do |form| %>
+                <%= form.submit '[Delete]', class: 'btn-xs', context: :link %>
+            <% end %>
+        <% end %>
     </div>
 </article>
 
