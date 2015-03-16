@@ -26,12 +26,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'acts_as_commentable'
 gem 'annotate'
 gem 'bh'
 gem 'bootstrap-sass'
 gem 'browserid-auth-rails'
-gem 'disqus_rails'
+gem 'draper'
 gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'gravatar_image_tag'
