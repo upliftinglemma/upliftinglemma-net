@@ -7,7 +7,7 @@
     </div>
     <div class="media-body">
         <div class="comment-byline">
-            <%= comment_author comment %> on <%= comment_time comment %>
+            <%= comment.author_name %> on <%= comment.created_timestamp %>
         </div>
         <%= comment.comment %>
         <% if policy(comment).destroy? %>
