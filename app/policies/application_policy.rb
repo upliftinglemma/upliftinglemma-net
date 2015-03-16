@@ -1,25 +1,25 @@
 class ApplicationPolicy
-    attr_reader :app_user, :record
+    attr_reader :app_user, :model
     delegate :app, :user, to: :app_user
 
-    def initialize app_user, record
+    def initialize app_user, model
         @app_user = app_user
-        @record = record
+        @model = model
     end
 
-    def policy record
-        Pundit.policy! app_user, record
+    def policy model
+        Pundit.policy! app_user, model
+    end
+
+    def policy_scope model_class
+        Pundit.policy_scope app_user, model_class
     end
 
 
     # Authorizations
 
-    def index?
-        false
-    end
-
     def show?
-        scope.where(:id => record.id).exists?
+        scope.exists? model.id
     end
 
     def create?
@@ -43,10 +43,17 @@ class ApplicationPolicy
     end
 
 
+    # Application-specific
+
+    def owner?
+        false
+    end
+
+
     # Scopes
 
     def scope
-        Pundit.policy_scope! app_user, record.class
+        Pundit.policy_scope! app_user, model.class
     end
 
     class Scope

@@ -9,16 +9,20 @@ module Blog
         end
 
         def create?
-            user.present? and
-                user.has_role_for 'writer', app
+            user.present? and user.has_role_for 'writer', app
         end
 
         def update?
-            create? and record.blog == app and record.author == user
+            create? and owner?
         end
 
         def destroy?
             update?
+        end
+
+
+        def owner?
+            user.present? and model.author == user
         end
     end
 end

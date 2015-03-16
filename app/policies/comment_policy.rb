@@ -1,16 +1,19 @@
 class CommentPolicy < ApplicationPolicy
     def create?
-        user.present? and policy(record.commentable).show?
+        user.present? and policy(model.commentable).show?
     end
 
     def update?
-        create? and record.author == user
+        create? and owner?
     end
 
-    def delete?
-        update? or
-            record.commentable.responds_to? :author and
-            record.commentable.author == user
+    def destroy?
+        update? or policy(model.commentable.author).owner?
+    end
+
+
+    def owner?
+        user.present? and model.author == user
     end
 end
 
