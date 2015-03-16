@@ -22,7 +22,7 @@
             <li><%= link_to article do %>
                 Read the full article
             <% end %></li>
-            <li><%= link_to article_path(article, anchor: 'comments') do %>
+            <li><%= link_to article_path(article, anchor: 'comment-area') do %>
                 Read the comments (<%= article.comments.count %>)
             <% end %></li>
         </ul>
