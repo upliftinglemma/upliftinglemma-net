@@ -4,7 +4,7 @@ module Blog
     class ArticlesController < ApplicationController
         include HasComments
 
-        load_and_authorize_resource find_by: :slug
+        load_and_authorize_model scope: :friendly
 
         def index
             @articles = @articles.page params[:page]

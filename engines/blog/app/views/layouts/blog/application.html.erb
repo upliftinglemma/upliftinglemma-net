@@ -4,7 +4,7 @@
 <% end %>
 
 <% content_for :toolbar do %>
-    <% if can? :post, ::Blog::Article %>
+    <% if policy(::Blog::Article.new).create? %>
         <%= toolbar_item 'New post', new_article_path %>
     <% end %>
 <% end %>
