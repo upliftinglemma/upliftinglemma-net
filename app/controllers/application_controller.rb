@@ -87,7 +87,7 @@ class ApplicationController < ActionController::Base
             # collection and store it into an instance variable.
             collection_variable = "@#{model_name.to_s.pluralize}"
             collection = policy_scope(model_class)
-            controller.instance_variable_set collection_variable, collection
+            instance_variable_set collection_variable, collection
 
         else
             # In this case, we're dealing with a single object.
