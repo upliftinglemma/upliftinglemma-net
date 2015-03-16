@@ -6,10 +6,8 @@
         %>
     </div>
     <div class="media-body">
-        <div class="comment-byline">
-            <%= comment.author_name %> on <%= comment.created_timestamp %>
-        </div>
-        <%= comment.comment %>
+        <%= comment.byline %>
+        <%= comment.body %>
         <% if policy(comment).destroy? %>
             <%= form_for [comment.commentable, comment], layout: :inline, method: :delete do |form| %>
                 <%= form.submit '[Delete]', class: 'btn-xs', context: :link %>

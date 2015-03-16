@@ -1,10 +1,10 @@
 <section id="comment-area">
     <h2>Comments</h2>
-    <%= render partial: '/comments/comment', collection: @comments %>
+    <%= render partial: '/comments/comment', collection: commentable.comments %>
 
-    <%= form_for [@commentable, @new_comment], layout: :basic do |form| %>
-        <%= form.hidden_field :commentable_id %>
-        <%= form.hidden_field :commentable_type %>
+    <%= form_for [commentable, Comment.new], layout: :basic do |form| %>
+        <%= form.hidden_field :commentable_id, value: commentable.id %>
+        <%= form.hidden_field :commentable_type, value: commentable.class %>
 
         <div class="media comment">
             <div class="media-left">
@@ -14,7 +14,7 @@
                 %>
             </div>
             <div class="media-body">
-                <%= form.text_area :comment, label: 'New Comment' %>
+                <%= form.text_area :body, label: 'New Comment', placeholder: 'Comment' %>
 
                 <div class="row">
                     <div class="col-sm-3 col-sm-push-9">

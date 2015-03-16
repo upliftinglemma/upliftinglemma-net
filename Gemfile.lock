@@ -2,6 +2,7 @@ PATH
   remote: engines/blog
   specs:
     blog (0.0.1)
+      draper
       rails (~> 4.2.0)
 
 PATH
