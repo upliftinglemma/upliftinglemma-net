@@ -120,7 +120,7 @@ class ApplicationController < ActionController::Base
             when 'create', 'update'
                 params_method = "#{model_name}_params"
 
-                if responds_to? params_method
+                if respond_to? params_method
                     # If the controller implements <model>_params explicitly,
                     # then use it.
                     safe_params = send params_method
