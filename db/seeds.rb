@@ -42,7 +42,7 @@ test_article = chasing_rabbits.articles.create(
         sodales elit. Fusce turpis sapien, congue a augue vel, vehicula varius
         tellus. Fusce vitae odio ut sapien blandit elementum ut vitae neque.
 
-        ---
+        * * *
 
         Etiam et diam eget tellus hendrerit feugiat. Vestibulum a tellus purus.
         Maecenas nunc ligula, aliquam fringilla turpis a, elementum dictum
@@ -58,7 +58,12 @@ test_article = chasing_rabbits.articles.create(
 PaperTrail.whodunnit = chris.id.to_s
 
 test_article.comments.create(
-    title: 'Test Comment',
-    comment: 'This is a test comment!'
+    body: 'This is a test comment!'
+)
+
+PaperTrail.whodunnit = mary.id.to_s
+
+test_article.comments.create(
+    body: 'Hello world. Foo bar baz!'
 )
 

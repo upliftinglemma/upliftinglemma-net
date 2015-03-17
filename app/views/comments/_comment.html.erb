@@ -7,7 +7,7 @@
     </div>
     <div class="media-body">
         <%= comment.byline %>
-        <%= comment.body %>
+        <%= comment.rendered_body %>
         <% if policy(comment).destroy? %>
             <%= form_for [comment.commentable, comment], layout: :inline, method: :delete do |form| %>
                 <%= form.submit '[Delete]', class: 'btn-xs', context: :link %>

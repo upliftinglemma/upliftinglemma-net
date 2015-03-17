@@ -8,7 +8,7 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def destroy?
-        update? or policy(model.commentable.author).owner?
+        update? or policy(model.commentable).owner?
     end
 
 
@@ -17,7 +17,7 @@ class CommentPolicy < ApplicationPolicy
     end
 
     def permitted_attributes
-        [:commentable_id, :commentable_type, :comment]
+        [:commentable_id, :commentable_type, :body]
     end
 end
 

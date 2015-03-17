@@ -14,8 +14,12 @@ class CommentDecorator < ApplicationDecorator
     end
 
     def byline css_class: 'comment-byline'
+        if commentable.respond_to? :author and commentable.author == author
+            author_context = ' (Author)'
+        end
+
         helpers.content_tag :div, class: css_class do
-            "#{author_name} on #{created_timestamp}".html_safe
+            "#{author_name}#{author_context} on #{created_timestamp}".html_safe
         end
     end
 
