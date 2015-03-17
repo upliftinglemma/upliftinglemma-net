@@ -1,0 +1,3 @@
+[submodule "vendor/ExpandingTextareas"]
+	path = vendor/ExpandingTextareas
+	url = https://github.com/bgrins/ExpandingTextareas.git
