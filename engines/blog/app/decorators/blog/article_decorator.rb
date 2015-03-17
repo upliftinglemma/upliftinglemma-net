@@ -1,5 +1,7 @@
 module Blog
     class ArticleDecorator < ::ApplicationDecorator
+        include ::RendersMarkdown
+
         decorates_association :comments
         delegate_all
 
@@ -26,23 +28,12 @@ module Blog
         end
 
         def rendered_body
-            markdown.render(body).html_safe
+            render_markdown body
         end
 
         def rendered_summary length: 500
-            helpers.truncate_html rendered_body, length: length, omission: ' &hellip;'.html_safe
-        end
-
-        private
-
-        def markdown
-            renderer = ::Redcarpet::Render::HTML.new(
-                filter_html: true, no_styles: true, safe_links_only: true, with_toc_data: true
-            )
-
-            ::Redcarpet::Markdown.new(
-                renderer, autolink: true, strikethrough: true, underline: true, footnotes: true
-            )
+            helpers.truncate_html rendered_body, length: length,
+                omission: ' &hellip;'.html_safe
         end
     end
 end

@@ -19,5 +19,17 @@ class CommentPolicy < ApplicationPolicy
     def permitted_attributes
         [:commentable_id, :commentable_type, :body]
     end
+
+    def markdown_options
+        {
+            renderer: {
+                escape_html: true,
+                safe_links_only: true
+            },
+            autolink: true,
+            strikethrough: true,
+            underline: true
+        }
+    end
 end
 

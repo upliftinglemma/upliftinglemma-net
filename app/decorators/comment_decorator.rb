@@ -1,4 +1,6 @@
 class CommentDecorator < ApplicationDecorator
+    include RendersMarkdown
+
     delegate_all
 
     def author_name css_class: 'comment-author'
@@ -23,16 +25,8 @@ class CommentDecorator < ApplicationDecorator
         end
     end
 
-    private
-
-    def markdown
-        renderer = ::Redcarpet::Render::HTML.new(
-            filter_html: true, no_styles: true, safe_links_only: true, with_toc_data: true
-        )
-
-        ::Redcarpet::Markdown.new(
-            renderer, autolink: true, strikethrough: true, underline: true
-        )
+    def rendered_body
+        render_markdown body
     end
 end
 
