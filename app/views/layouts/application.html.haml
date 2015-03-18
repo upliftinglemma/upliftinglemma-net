@@ -1,0 +1,40 @@
+!!!
+%html{html_attrs}
+  %head
+    %title= content_for :title or @app.name
+
+    = stylesheet_link_tag    'application',  media: 'all'
+    = stylesheet_link_tag    app_stylesheet, media: 'all'
+    = javascript_include_tag 'application'
+
+    = content_for :head
+
+    = setup_browserid
+    = csrf_meta_tags
+
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
+
+  %body{class: app_class}
+    #background.theme-dark-background
+      #container.container
+
+        #page.theme-page-shadow
+
+          %header#header.jumbotron.theme-primary-background.theme-primary-image{role: 'banner'}
+            %h1= link_to @app.name, app_route.root_url
+
+            - if not @app.default?
+              %h2
+                %span.powered-by Powered by
+                = link_to 'Uplifting Lemma', app_route(App.default).root_url
+
+          = render partial: '/layouts/toolbar'
+
+          %main#content{role: 'main'}
+            = content_for :content
+
+          %footer#footer{role: 'contentinfo'}
+            - if not @app.default? and @app.owner.present?
+              #{@app.name} &copy; 2015 #{@app.owner.name}.
+            Uplifting Lemma &copy; 2015 Chris Bouchard.
+
