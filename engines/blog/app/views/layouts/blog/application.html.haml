@@ -1,0 +1,17 @@
+- content_for :head do
+  = stylesheet_link_tag    'blog/application', media: 'all'
+  = javascript_include_tag 'blog/application'
+
+- content_for :toolbar do
+  - if policy(::Blog::Article.new).create?
+    = toolbar_item 'New post', new_article_path
+
+- content_for :content do
+  .row
+    .col-sm-9
+      = yield
+    .col-sm-3
+      %h3 Test
+        %p Hello world. This is a column. Column column column.
+
+= render template: 'layouts/application'
