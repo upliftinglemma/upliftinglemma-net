@@ -5,6 +5,7 @@ module Blog
         include HasComments
 
         load_and_authorize_model scope: :friendly
+        decorates_assigned :article, :articles
 
         def index
             @articles = @articles.page params[:page]
@@ -22,7 +23,6 @@ module Blog
         end
 
         def show
-            load_comments
         end
 
         def edit

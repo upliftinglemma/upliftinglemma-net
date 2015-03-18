@@ -1,0 +1,12 @@
+= form_for article, layout: :basic do |form|
+  = form.text_field :title, class: 'input-lg'
+  = form.text_area :body, rows: 5
+
+  .row
+    .col-sm-3.col-sm-push-9
+      = form.submit class: 'btn btn-primary btn-block'
+    .col-sm-9.col-sm-pull-3
+      %p.small
+        Articles are formatted using
+        #{link_to 'Markdown', 'http://daringfireball.net/projects/markdown/syntax'}.
+

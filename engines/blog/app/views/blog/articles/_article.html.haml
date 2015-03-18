@@ -1,0 +1,22 @@
+- summary = local_assigns.fetch :summary, false
+
+%article.article
+  .page-header
+    %h1.article-title= link_to article.title, article
+    = article.byline
+
+  .article-body
+    - if summary
+      = article.rendered_summary
+    - else
+      = article.rendered_body
+
+  - if summary
+    %ul.list-inline
+      %li
+        =link_to article do
+          Read the full article
+      %li
+        = link_to article_path(article, anchor: 'comment-area') do
+          Read the comments (#{article.comments.count})
+
