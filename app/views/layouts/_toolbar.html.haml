@@ -1,0 +1,18 @@
+= navbar fluid: true do
+  = vertical do end
+
+  = horizontal do
+    = nav class: 'navbar-right' do
+      - if authenticated?
+        = toolbar_text do
+          Welcome, #{current_user.name}
+
+      = content_for :toolbar
+
+      - if authenticated?
+        = toolbar_item 'Log out', '/logout', class: 'browserid_logout'
+      - else
+        = toolbar_item '/login', class: 'browserid_login', title: 'Log in using Persona' do
+          %span.icon.icon-persona-logo-glyph
+          Log in
+

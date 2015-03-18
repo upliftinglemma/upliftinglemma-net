@@ -1,0 +1,27 @@
+%section#comment-area
+  %h2 Comments
+  = render partial: '/comments/comment', collection: commentable.comments
+
+  = form_for [commentable, Comment.new], layout: :basic do |form|
+    = form.hidden_field :commentable_id, value: commentable.id
+    = form.hidden_field :commentable_type, value: commentable.model.class
+
+    .media.comment
+      .media-left
+        = gravatar_image_tag current_user.email, alt: current_user.name,
+          gravatar: { default: :identicon, size: 50 }
+
+      .media-body
+        = form.text_area :body, class: 'comment-body', label: 'New Comment',
+          placeholder: 'Comment'
+
+        .row
+          .col-sm-3.col-sm-push-9
+            = form.submit class: 'btn btn-primary btn-block'
+
+          .col-sm-9.col-sm-pull-3
+            %p
+              Comments are formatted using
+              #{link_to 'Markdown', 'http://daringfireball.net/projects/markdown/syntax'}.
+              All <span class="initialism">HTML</span> tags will be sanitized.
+
