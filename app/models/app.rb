@@ -16,67 +16,70 @@
 #
 
 class App < ActiveRecord::Base
-    include FriendlyId
+  include FriendlyId
 
-    has_paper_trail
+  has_paper_trail
 
-    has_many :roles
-    has_many :users, through: :roles
+  has_many :roles
+  has_many :users, through: :roles
 
-    friendly_id :name, use: :slugged
+  friendly_id :name, use: :slugged
 
-    validates_presence_of :name, :type, :slug
-
-
-    def route_name
-        "#{slug.underscore}_app"
-    end
+  validates_presence_of :name, :type, :slug
 
 
-    ##
-    # Look up the app's engine by the type (i.e., the namespace).
-    #
-    def engine
-        type.deconstantize.constantize::Engine
-    end
+  def route_name
+    "#{slug.underscore}_app"
+  end
 
 
-    ##
-    # Look up the app's owner by role.
-    #
-    def owner
-        User.joins(:roles).where('roles.role' => 'owner', 'roles.app_id' => id).first
-    end
+  ##
+  # Look up the app's engine by the type (i.e., the namespace).
+  #
+  def engine
+    type.deconstantize.constantize::Engine
+  end
 
 
-    ##
-    # Decide if this app is the default app.
-    #
-    def default?
-        self == self.class.default
-    end
+  ##
+  # Look up the app's owner by role.
+  #
+  def owner
+    User.joins(:roles).where(
+      'roles.role' => 'owner',
+      'roles.app_id' => id
+    ).first
+  end
 
 
-    ##
-    # Get the roles for the given user in this app.
-    def roles_for user
-        roles.where(user: user)
-    end
+  ##
+  # Decide if this app is the default app.
+  #
+  def default?
+    self == self.class.default
+  end
 
 
-    ##
-    # The slug of the default app.
-    #
-    def self.default_slug
-        'uplifting-lemma'
-    end
+  ##
+  # Get the roles for the given user in this app.
+  def roles_for user
+    roles.where(user: user)
+  end
 
 
-    ##
-    # Get the default app.
-    #
-    def self.default
-        App.friendly.find(default_slug)
-    end
+  ##
+  # The slug of the default app.
+  #
+  def self.default_slug
+    'uplifting-lemma'
+  end
+
+
+  ##
+  # Get the default app.
+  #
+  def self.default
+    App.friendly.find(default_slug)
+  end
 end
 

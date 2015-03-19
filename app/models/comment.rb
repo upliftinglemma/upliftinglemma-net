@@ -1,8 +1,8 @@
 class Comment < ActiveRecord::Base
-    include Posted
+  include Posted
 
-    belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, polymorphic: true
 
-    validates_presence_of :body, :commentable
+  validates_presence_of :body, :commentable
 end
 
