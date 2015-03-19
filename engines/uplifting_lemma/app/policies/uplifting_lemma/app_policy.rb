@@ -1,5 +1,5 @@
 module UpliftingLemma
-    class AppPolicy < ::AppPolicy
-    end
+  class AppPolicy < ::AppPolicy
+  end
 end
 

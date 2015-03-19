@@ -1,6 +1,6 @@
 class AppPolicy < ApplicationPolicy
-    def access?
-        true
-    end
+  def access?
+    true
+  end
 end
 
