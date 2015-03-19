@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
     before_action :do_load_and_authorize_app
 
 
+    private
+
+
     def app_route app=nil
         app = get_app app
 
@@ -47,9 +50,6 @@ class ApplicationController < ActionController::Base
     end
 
 
-    private
-
-
     ##
     # Determine which app we are currently running based on the subdomain, and
     # make sure we are authorized to access it.
@@ -70,7 +70,12 @@ class ApplicationController < ActionController::Base
     # action, then ensure that the current user is authorized to use it for
     # that action.
     #
-    def do_load_and_authorize_model model_name=nil, class_name: nil, find_by: :id, scope: nil
+    def do_load_and_authorize_model model_name=nil, class_name: nil,
+        find_by: :id, scope: nil
+
+        # If the model is not specified, get it from the name of the current
+        # controller. We assume a controller like WidgetsController has a
+        # corresponding model named Widget.
         model_name ||= controller_name.singularize
 
         # If the class name is not specified, use the model name. Assume
