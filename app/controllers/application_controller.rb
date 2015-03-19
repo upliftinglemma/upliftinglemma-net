@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
 
-  def app_route app=nil
+  def app_route app = nil
     app = get_app app
 
     route = send app.route_name
@@ -71,7 +71,7 @@ class ApplicationController < ActionController::Base
   # action, then ensure that the current user is authorized to use it for
   # that action.
   #
-  def do_load_and_authorize_model model_name=nil, class_name: nil,
+  def do_load_and_authorize_model model_name = nil, class_name: nil,
     find_by: :id, scope: nil
 
     # If the model is not specified, get it from the name of the current
