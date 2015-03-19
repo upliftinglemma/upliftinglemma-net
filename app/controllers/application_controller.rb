@@ -79,8 +79,8 @@ class ApplicationController < ActionController::Base
     # corresponding model named Widget.
     model_name ||= controller_name.singularize
 
-    # If the class name is not specified, use the model name. Assume
-    # the class is in the same namespace as the controller.
+    # If the class name is not specified, use the model name. Assume the class
+    # is in the same namespace as the controller.
     if class_name.nil?
       module_name = controller_path.classify.deconstantize
       class_name = "#{module_name}::#{model_name.classify}"
@@ -89,8 +89,8 @@ class ApplicationController < ActionController::Base
     model_class = class_name.constantize
 
     if action_name == 'index'
-      # In this case, we're dealing with a collection. Load the
-      # collection and store it into an instance variable.
+      # In this case, we're dealing with a collection. Load the collection and
+      # store it into an instance variable.
       collection_variable = "@#{model_name.to_s.pluralize}"
       collection = policy_scope(model_class)
       instance_variable_set collection_variable, collection
@@ -99,10 +99,10 @@ class ApplicationController < ActionController::Base
       # In this case, we're dealing with a single object.
       model_variable = "@#{model_name}"
 
-      # Scopes can be given in a few ways. If no scope is passed (i.e.,
-      # it's nil), use the model's class. If a symbol is passed, treat it
-      # as a method name to call on the model class. If a proc is passed,
-      # execute it with model's class as its context.
+      # Scopes can be given in a few ways. If no scope is passed (i.e., it's
+      # nil), use the model's class. If a symbol is passed, treat it as a
+      # method name to call on the model class. If a proc is passed, execute it
+      # with model's class as its context.
       model_scope =
         case scope
         when nil then model_class
@@ -111,25 +111,25 @@ class ApplicationController < ActionController::Base
         else raise ArgumentError, 'Invalid scope'
         end
 
-      # The actions that deal with new objects need to create their
-      # object here. All other actions load the object by a key
-      # (specified by the find_by parameter).
+      # The actions that deal with new objects need to create their object
+      # here. All other actions load the object by a key (specified by the
+      # find_by parameter).
       model =
-        case action_name
-        when 'create', 'new' then model_scope.new
-        else model_scope.find params[find_by]
+        if %w(create new).includes? action_name
+          model_scope.new
+        else
+          model_scope.find params[find_by]
         end
 
-      # The modification actions need to assign attributes on the model
-      # object. We need to figure out which attributes to assign.
-      case action_name
-      when 'create', 'update'
+      # The modification actions need to assign attributes on the model object.
+      # We need to figure out which attributes to assign.
+      if %w(create update).includes? action_name
         params_method = "#{model_name}_params"
 
         safe_params =
           if respond_to? params_method
-            # If the controller implements <model>_params explicitly,
-            # then use it.
+            # If the controller implements <model>_params explicitly, then use
+            # it.
             send params_method
           else
             # Otherwise, get the permitted fields from the policy.
@@ -141,8 +141,8 @@ class ApplicationController < ActionController::Base
         model.assign_attributes safe_params
       end
 
-      # Now that the model is all set (finally!) we can authorize it and
-      # store it into an instance variable.
+      # Now that the model is all set (finally!) we can authorize it and store
+      # it into an instance variable.
       authorize model
       instance_variable_set model_variable, model
     end
