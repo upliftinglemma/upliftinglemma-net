@@ -1,0 +1,9 @@
+.author-about
+  .media-left
+    = gravatar_image_tag author.email, alt: author.name,
+      gravatar: { default: :identicon, size: 64 }
+
+  .media-body
+    %h4.media-heading About the Author
+    = author.name
+
