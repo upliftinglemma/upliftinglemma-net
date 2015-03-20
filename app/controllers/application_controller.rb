@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
       # here. All other actions load the object by a key (specified by the
       # find_by parameter).
       model =
-        if %w(create new).includes? action_name
+        if %w(create new).include? action_name
           model_scope.new
         else
           model_scope.find params[find_by]
@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
 
       # The modification actions need to assign attributes on the model object.
       # We need to figure out which attributes to assign.
-      if %w(create update).includes? action_name
+      if %w(create update).include? action_name
         params_method = "#{model_name}_params"
 
         safe_params =
