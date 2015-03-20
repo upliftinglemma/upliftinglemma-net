@@ -22,6 +22,6 @@
           .col-sm-9.col-sm-pull-3
             %p
               Comments are formatted using
-              #{link_to 'Markdown', 'http://daringfireball.net/projects/markdown/syntax'}.
-              All <span class="initialism">HTML</span> tags will be sanitized.
+              = succeed '.' do
+                %a{href: 'http://daringfireball.net/projects/markdown/syntax'} Markdown
 
