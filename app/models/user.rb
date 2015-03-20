@@ -13,17 +13,17 @@
 #
 
 class User < ActiveRecord::Base
-    has_paper_trail
+  has_paper_trail
 
-    has_many :roles
-    has_many :apps, through: :roles
+  has_many :roles
+  has_many :apps, through: :roles
 
-    def roles_for app
-        roles.where app: app
-    end
+  def roles_for app
+    roles.where app: app
+  end
 
-    def has_role_for role, app
-        roles_for(app).where(role: role).exists?
-    end
+  def has_role_for role, app
+    roles_for(app).where(role: role).exists?
+  end
 end
 
