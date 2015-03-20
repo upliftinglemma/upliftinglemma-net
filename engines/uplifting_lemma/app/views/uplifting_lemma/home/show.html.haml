@@ -1,0 +1,12 @@
+.page-header
+  %h1 We offer the following apps:
+
+%ul
+  = list_of App.all do |app|
+    %h4= link_to app.name, app_route(app).root_url
+
+%br
+
+%p
+  Current user:
+  = current_user.inspect
