@@ -12,11 +12,9 @@
       = article.rendered_body
 
   - if summary
-    %ul.list-inline
-      %li
-        =link_to article, class: 'btn btn-primary' do
-          Read the full article
-      %li
-        = link_to article_path(article, anchor: 'comment-area'), class: 'btn btn-default' do
-          Read the comments (#{article.comments.count})
+    = nav as: :pills do
+      =link_to article do
+        Read the full article
+      = link_to article_path(article, anchor: 'comment-area') do
+        Read the comments (#{article.comments.count})
 
