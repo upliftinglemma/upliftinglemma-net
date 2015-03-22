@@ -1,6 +1,8 @@
 class CommentDecorator < ApplicationDecorator
     include RendersMarkdown
 
+    decorates_association :author
+
     delegate_all
 
     def author_name css_class: 'comment-author'

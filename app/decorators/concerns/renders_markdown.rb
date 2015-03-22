@@ -2,7 +2,7 @@ module RendersMarkdown
     extend ActiveSupport::Concern
 
     def render_markdown content
-        markdown.render(body).html_safe
+        markdown.render(content).html_safe
     end
 
     private

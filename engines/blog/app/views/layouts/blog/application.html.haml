@@ -11,8 +11,8 @@
     .col-sm-9
       = yield
     .col-sm-3
-      %h3 Test
-      %p Hello world. This is a column. Column column column.
+      #blog-description.theme-primary-border
+        = @app.rendered_description
 
 = render template: 'layouts/application'
 

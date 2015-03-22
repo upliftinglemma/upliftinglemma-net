@@ -3,6 +3,7 @@ module Blog
         include ::RendersMarkdown
 
         decorates_association :comments
+        decorates_association :author
         delegate_all
 
         def author_name css_class: 'article-author'

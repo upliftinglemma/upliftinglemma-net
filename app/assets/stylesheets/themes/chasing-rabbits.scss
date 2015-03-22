@@ -11,6 +11,10 @@ $background-color: white;
         background-color: $primary-color;
     }
 
+    .theme-primary-border {
+        border-color: $primary-color;
+    }
+
     .theme-primary-image {
         background-image: $primary-image;
     }

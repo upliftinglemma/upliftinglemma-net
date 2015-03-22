@@ -6,15 +6,26 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :authenticated?, :current_user, :app_route, :get_app
-
   alias_method :authenticated?, :browserid_authenticated?
-  alias_method :current_user, :browserid_current_user
+
+  helper_method :authenticated?, :current_user, :app_route, :get_app
 
   before_action :do_load_and_authorize_app
 
 
+  def current_user
+    if authenticated?
+      @decorated_current_user ||= browserid_current_user.decorate
+    end
+  end
+
+
   private
+
+
+  def user_for_paper_trail
+    browserid_current_user
+  end
 
 
   def app_route app = nil
@@ -28,12 +39,10 @@ class ApplicationController < ActionController::Base
 
 
   def get_app app
-    if app.nil?
-      @app
-    elsif app.is_a? String or app.is_a? Symbol
-      App.friendly.find app.to_s
-    else
-      app
+    case app
+    when nil then @app
+    when String, Symbol then App.friendly.find(app.to_s).decorate
+    else app
     end
   end
 

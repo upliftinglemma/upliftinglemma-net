@@ -1,7 +1,6 @@
 %article.media.comment
   .media-left
-    = gravatar_image_tag comment.author.email, alt: comment.author.name,
-      gravatar: { default: :identicon, size: 50 }
+    = comment.author.avatar
 
   .media-body
     = comment.byline

@@ -8,8 +8,7 @@
 
     .media.comment
       .media-left
-        = gravatar_image_tag current_user.email, alt: current_user.name,
-          gravatar: { default: :identicon, size: 50 }
+        = current_user.avatar
 
       .media-body
         = form.text_area :body, class: 'comment-body', label: 'New Comment',
