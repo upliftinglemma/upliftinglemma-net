@@ -4,7 +4,7 @@
     %title= content_for :title or @app.name
 
     = stylesheet_link_tag    'application',  media: 'all'
-    = stylesheet_link_tag    app_stylesheet, media: 'all'
+    = stylesheet_link_tag    @app.stylesheet, media: 'all'
     = javascript_include_tag 'application'
 
     = content_for :head
@@ -14,7 +14,7 @@
 
     %meta{name: 'viewport', content: 'width=device-width, initial-scale=1'}
 
-  %body{class: app_class}
+  %body{class: @app.class_name}
     #background.theme-dark-background
       #container.container
 
@@ -26,7 +26,7 @@
             - if not @app.default?
               %h2
                 %span.powered-by Powered by
-                = link_to 'Uplifting Lemma', app_route(App.default).root_url
+                = link_to App.default.name, app_route(App.default).root_url
 
           = render partial: '/layouts/toolbar'
 
@@ -36,5 +36,5 @@
           %footer#footer{role: 'contentinfo'}
             - if not @app.default? and @app.owner.present?
               #{@app.name} &copy; 2015 #{@app.owner.name}.
-            Uplifting Lemma &copy; 2015 Chris Bouchard.
+            #{App.default.name} &copy; 2015 #{App.default.owner.name}.
 
