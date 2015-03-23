@@ -1,0 +1,25 @@
+$primary-color: hsl(240, 43%, 37%);
+$background-color: darken($primary-color, 22%);
+
+.app-uplifting-lemma {
+    .theme-primary-color {
+        color: $primary-color;
+    }
+
+    .theme-primary-background {
+        background-color: $primary-color;
+    }
+
+    .theme-primary-image {
+        background-image: none;
+    }
+
+    .theme-page-shadow {
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.33);
+    }
+
+    .theme-dark-background {
+        background-color: $background-color;
+    }
+}
+

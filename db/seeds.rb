@@ -15,6 +15,15 @@ uplifting_lemma = UpliftingLemma::App.create(
   TEXT
 )
 
+uplifting_lemma_blog = Blog::App.create(
+  name: 'Uplifting Lemma Blog',
+  slug: 'blog',
+  license: 'cc by-nc 4.0',
+  description: <<-TEXT.strip_heredoc
+    is my test blog app.
+  TEXT
+)
+
 chasing_rabbits = Blog::App.create(
   name: 'Chasing Rabbits',
   description: <<-TEXT.strip_heredoc
@@ -28,10 +37,20 @@ chasing_rabbits = Blog::App.create(
 
 Role.create [
   {app: uplifting_lemma, user: chris, role: 'owner'},
+  {app: uplifting_lemma_blog, user: chris, role: 'owner'},
+  {app: uplifting_lemma_blog, user: chris, role: 'writer'},
   {app: chasing_rabbits, user: chris, role: 'writer'},
   {app: chasing_rabbits, user: mary, role: 'owner'},
   {app: chasing_rabbits, user: mary, role: 'writer'}
 ]
+
+uplifting_lemma_blog.articles.create(
+  title: 'Testing my Blog',
+  body: <<-TEXT.strip_heredoc
+    This is a test article. Look at how it has a title and body. Test test
+    test.
+  TEXT
+)
 
 PaperTrail.whodunnit = mary.id.to_s
 
