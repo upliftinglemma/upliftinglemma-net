@@ -12,6 +12,17 @@ module Blog
         validate :blog_is_a_blog
 
 
+        def previous
+            self.class.first conditions: ['created_at < ?', created_at],
+                order: 'created_at desc'
+        end
+
+        def next
+            self.class.first conditions: ['created_at > ?', created_at],
+                order: 'created_at asc'
+        end
+
+
         private
 
         ##
