@@ -1,21 +1,4 @@
 = render article
-
-.row
-  .col-sm-6
-    %p.text-center
-      = link_to article.previous, class: ['btn', 'btn-link', if not article.previous then 'disabled' end] do
-        #{icon :caret_left, library: :font_awesome} Previous
-    - if article.previous
-      %p.text-center.text-muted
-        %q= article.previous.title
-
-  .col-sm-6
-    %p.text-center
-      = link_to article.next, class: ['btn', 'btn-link', if not article.next then 'disabled' end] do
-        Next #{icon :caret_right, library: :font_awesome}
-    - if article.next
-      %p.text-center.text-muted
-        %q= article.next.title
-
+= render 'prev_next', article: article
 = render '/comments/comment_area', commentable: article
 
