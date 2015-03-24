@@ -1,0 +1,22 @@
+= form_for [comment.commentable, comment], layout: :basic do |form|
+  = form.hidden_field :commentable_id, value: comment.commentable.id
+  = form.hidden_field :commentable_type, value: comment.commentable.class
+
+  .media.comment
+    .media-left
+      = current_user.avatar
+
+    .media-body
+      = form.text_area :body, class: 'comment-body', label: 'New Comment',
+        placeholder: 'Comment'
+
+      .row
+        .col-sm-3.col-sm-push-9
+          = form.submit class: 'btn btn-primary btn-block'
+
+        .col-sm-9.col-sm-pull-3
+          %p
+            Comments are formatted using
+            = succeed '.' do
+              %a{href: 'http://daringfireball.net/projects/markdown/syntax'} Markdown
+
