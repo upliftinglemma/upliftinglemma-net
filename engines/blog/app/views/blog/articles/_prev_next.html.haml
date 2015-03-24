@@ -1,0 +1,20 @@
+#prev-next
+  = nav as: :pills, layout: :justified do
+    %li{class: if not article.previous then 'disabled' end}
+      %a{href: url_for(article.previous)}
+        #{icon :caret_left, library: :font_awesome} Previous
+    %li{class: if not article.next then 'disabled' end}
+      %a{href: url_for(article.next)}
+        Next #{icon :caret_right, library: :font_awesome}
+
+  .row
+    .col-sm-6
+      - if article.previous
+        %p.text-center.text-muted
+          %q= article.previous.title
+
+    .col-sm-6
+      - if article.next
+        %p.text-center.text-muted
+          %q= article.next.title
+
