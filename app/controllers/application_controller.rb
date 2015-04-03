@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   before_action :do_load_and_authorize_app
 
+  decorates_assigned :app
+
 
   def current_user
     if authenticated?

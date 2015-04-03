@@ -4,10 +4,12 @@
   - if comments.present?
     = render partial: '/comments/comment', collection: comments
   - else
-    %p No comments yet
+    %p No comments yet. Be the first!
 
   - if policy(new_comment).new?
     = render '/comments/form', comment: new_comment
   - else
-    %p Please log in to comment.
+    %p.comment-no-form
+      An account is required to post comments.
+      Please #{link_to 'log in with Persona', '/login'}.
 
