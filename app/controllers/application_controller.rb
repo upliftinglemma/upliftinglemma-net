@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :authenticated?, :current_user, :app_route, :get_app
 
-  before_action :do_load_and_authorize_app
+  prepend_before_action :do_load_and_authorize_app
 
   decorates_assigned :app
 

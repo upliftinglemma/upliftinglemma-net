@@ -13,13 +13,13 @@ module Blog
 
 
     def previous
-      self.class.where('created_at < ?', created_at)
+      blog.articles.where('created_at < ?', created_at)
         .order(created_at: :desc)
         .take
     end
 
     def next
-      self.class.where('created_at > ?', created_at)
+      blog.articles.where('created_at > ?', created_at)
         .order(created_at: :asc)
         .take
     end

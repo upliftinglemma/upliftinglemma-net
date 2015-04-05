@@ -44,28 +44,28 @@ module LoadsModel
 
     model_class = class_name.constantize
 
+    # Scopes can be given in a few ways. If no scope is passed (i.e., it's
+    # nil), use the model's class. If a symbol is passed, treat it as a method
+    # name to call on the model class. If a proc is passed, execute it with
+    # model's class as its context.
+    model_scope =
+      case scope
+      when nil then model_class
+      when Symbol then model_class.send scope
+      when Proc then scope.call @app
+      else raise ArgumentError, 'Invalid scope'
+      end
+
     if action_name == 'index'
       # In this case, we're dealing with a collection. Load the collection and
       # store it into an instance variable.
       collection_variable = "@#{model_name.to_s.pluralize}"
-      collection = policy_scope(model_class)
+      collection = policy_scope(model_scope)
       instance_variable_set collection_variable, collection
 
     else
       # In this case, we're dealing with a single object.
       model_variable = "@#{model_name}"
-
-      # Scopes can be given in a few ways. If no scope is passed (i.e., it's
-      # nil), use the model's class. If a symbol is passed, treat it as a
-      # method name to call on the model class. If a proc is passed, execute it
-      # with model's class as its context.
-      model_scope =
-        case scope
-        when nil then model_class
-        when Symbol then model_class.send scope
-        when Proc then model_class.instance_exec &scope
-        else raise ArgumentError, 'Invalid scope'
-        end
 
       # The actions that deal with new objects need to create their object
       # here. All other actions load the object by a key (specified by the

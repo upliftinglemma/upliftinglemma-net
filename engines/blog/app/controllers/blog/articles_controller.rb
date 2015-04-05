@@ -4,7 +4,7 @@ module Blog
   class ArticlesController < ApplicationController
     include HasComments
 
-    load_and_authorize_model scope: :friendly
+    load_and_authorize_model scope: ->(app) { app.articles.friendly }
     load_and_authorize_comments
 
     def index
